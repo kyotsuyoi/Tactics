@@ -31,8 +31,47 @@
     justify-content: center;
     align-items: center;
     font-size: x-large;
-    margin-bottom: 10
-px
-;
+    margin-bottom: 10px;
 }
+
+#selected_char_hp{
+    margin: 0;
+}
+
+#selected_char_sp{
+    margin: 0;
+}
+
+#selected_char_atk{
+    margin: 0;
+}
+
+#selected_char_atk{
+    margin: 0;
+}
+
+#selected_char_def{
+    margin: 0;
+}
+
+#selected_char_matk{
+    margin: 0;
+}
+
+#selected_char_mdef{
+    margin: 0;
+}
+
+#selected_char_step{
+    margin: 0;
+}
+
+#selected_char_range{
+    margin: 0;
+}
+
+#selected_char_mrange{
+    margin: 0;
+}
+
 /* .select div{width:70px; height:70px; float:left; margin:1px; font-size: 48px; text-align:center; float:left; margin:5px;} *

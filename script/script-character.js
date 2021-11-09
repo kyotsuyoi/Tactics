@@ -11,7 +11,7 @@ character = SetCharacter(
     5, //MDEF
     2, //STEP
     1, //RANGE
-    1 //RANGE
+    1 //MRANGE
 );
 CharacterPosition(1,5,character);
 
@@ -26,12 +26,12 @@ character = SetCharacter(
     30, //MDEF
     1, //STEP
     1, //RANGE
-    2 //RANGE
+    2 //MRANGE
 );
 CharacterPosition(1,4,character);
 
 //Para inicializar informações e atributos do personagem
-function SetCharacter(name, sprite, hp, sp, atk, def, matk, mdef, step, range, m_range){
+function SetCharacter(name, sprite, hp, sp, atk, def, matk, mdef, step, range, mrange){
     var character = new Array();
 
     character['name'] = name;	
@@ -45,7 +45,7 @@ function SetCharacter(name, sprite, hp, sp, atk, def, matk, mdef, step, range, m
     character['mdef'] = mdef; 
     character['step'] = step; 
     character['range'] = range; 
-    character['m_range'] = m_range; 
+    character['mrange'] = mrange; 
 
     character['turn'] = false;      
     return character;
