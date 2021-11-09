@@ -2,7 +2,7 @@ var character;
 
 character = SetCharacter(
     "warrior_girl", 
-    "src/warrior_girl_1.png",
+    "src/warrior_girl_2.png",
     200, //HP
     20, //SP
     20, //ATK
@@ -13,11 +13,11 @@ character = SetCharacter(
     1, //RANGE
     1 //MRANGE
 );
-CharacterPosition(1,5,character);
+CharacterPosition(4,1,character);
 
 character = SetCharacter(
     "mage_girl", 
-    "src/mage_girl_1.png",
+    "src/mage_girl_4.png",
     120, //HP
     100, //SP
     5, //ATK
@@ -28,7 +28,7 @@ character = SetCharacter(
     1, //RANGE
     2 //MRANGE
 );
-CharacterPosition(1,4,character);
+CharacterPosition(4,8,character);
 
 //Para inicializar informações e atributos do personagem
 function SetCharacter(name, sprite, hp, sp, atk, def, matk, mdef, step, range, mrange){
