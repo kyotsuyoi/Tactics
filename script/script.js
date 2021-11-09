@@ -23,8 +23,8 @@ function Selected(x,y){
             document.getElementById("selected_char_sp").textContent = "SP:" + selected_field['sp'] + "/" + selected_field['maxsp'];
             document.getElementById("selected_char_atk").textContent = "ATK:" + selected_field['atk'];
             document.getElementById("selected_char_def").textContent = "DEF:" + selected_field['def'];
-            document.getElementById("selected_char_matk").textContent = "ATK:" + selected_field['matk'];
-            document.getElementById("selected_char_mdef").textContent = "DEF:" + selected_field['mdef'];
+            document.getElementById("selected_char_matk").textContent = "MATK:" + selected_field['matk'];
+            document.getElementById("selected_char_mdef").textContent = "MDEF:" + selected_field['mdef'];
             document.getElementById("selected_char_step").textContent = "STEP:" + selected_field['step'];
             document.getElementById("selected_char_range").textContent = "RANGE:" + selected_field['range'];
             document.getElementById("selected_char_mrange").textContent = "MRANGE:" + selected_field['mrange'];
@@ -66,8 +66,8 @@ function Selected(x,y){
         document.getElementById("selected_char_sp").textContent = "SP:" + selected_field['sp'] + "/" + selected_field['maxsp'];
         document.getElementById("selected_char_atk").textContent = "ATK:" + selected_field['atk'];
         document.getElementById("selected_char_def").textContent = "DEF:" + selected_field['def'];
-        document.getElementById("selected_char_matk").textContent = "ATK:" + selected_field['matk'];
-        document.getElementById("selected_char_mdef").textContent = "DEF:" + selected_field['mdef'];
+        document.getElementById("selected_char_matk").textContent = "MATK:" + selected_field['matk'];
+        document.getElementById("selected_char_mdef").textContent = "MDEF:" + selected_field['mdef'];
         document.getElementById("selected_char_step").textContent = "STEP:" + selected_field['step'];
         document.getElementById("selected_char_range").textContent = "RANGE:" + selected_field['range'];
         document.getElementById("selected_char_mrange").textContent = "MRANGE:" + selected_field['mrange'];

@@ -58,8 +58,8 @@ function AttackTo(x,y){
         }
 
         var hp = field[x][y]['hp'];  
-        var atk = selected_field['atk'];
-        var def = field[x][y]['def'];
+        var atk;
+        var def;
         var r_atk;
 
         if(attack_type==1){
@@ -70,11 +70,14 @@ function AttackTo(x,y){
             def = field[x][y]['mdef'];
             selected_field['sp'] = selected_field['sp'] - 10;
         }
-        
+
+       
         if(def > atk){
-            r_atk = 1;
-        }else{  
-            r_atk = atk - def;          
+            round = Math.round(Math.random() * ((atk/2) - 1) + 1);
+            r_atk = round; 
+        }else{     
+            round = Math.round(Math.random() * ((atk/2) - 0) + 0);          
+            r_atk = atk - def + (round);          
         }
         field[x][y]['hp'] = hp - r_atk;
 
