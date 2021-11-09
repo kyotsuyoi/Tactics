@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="pt-BR">
+
+    <head>        
+        <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="css/style-selected-character.css" media="screen"/>
+        <title>Tactics</title>  
+    </head>
+
+    <body id="body">
+
+        <div id="block" style="display: none;"></div>
+        <div id="action-select" style="display: none;" class="select">
+            <div>
+                <img id="selected_char_img">
+            </div>
+            <div>
+                <p id="selected_char_hp"></p>
+                <p id="selected_char_sp"></p>
+            </div>
+            <div id="action-select-buttons">
+                <div onclick="Action('attack');">⚔️</div>
+                <div onclick="Action('magic');">✨</div>
+                <div onclick="Action('walk');">🥾</div>
+                <div onclick="Action('return');">🚫</div>
+            </div>            
+        </div>
+
+        <div id="field"></div>
+
+        <script src="script/script-field.js"></script>
+        <script src="script/script.js"></script>
+        <script src="script/script-character.js"></script>
+        <script src="script/script-walk-range.js"></script>
+        <script src="script/script-attack-range.js"></script>
+    </body>
+</html>
+

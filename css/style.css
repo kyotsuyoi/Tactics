@@ -1,0 +1,38 @@
+#field{  
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;  
+    width: 800px; height: 800px; 
+    border:#000 solid 1px; 
+    /* margin:auto; */
+    background-image: url("../src/g.jpg"); 
+    /* background-size: contain; */
+}
+
+#field div{
+    width:98px; 
+    height:98px; 
+    float:left; 
+    margin:1px; 
+    font-size: 
+    48px; 
+    text-align:center;
+}
+
+div{
+    cursor:pointer;
+}
+
+#action-select{
+    display:block;
+}
+
+#body{
+    background: #000;
+}
+
+#damage{
+    font-size: 40px;
+    margin-top: -120px;
+    color: red;
+} 
