@@ -1,6 +1,6 @@
 # Movimentação
-![](src/mov_area.jpg)
+![](src/mov_area.png)
 # Ataque
-![](src/atk_area.jpg)
+![](src/atk_area.png)
 # Menu
-![](src/menu.jpg)
+![](src/menu.png)
