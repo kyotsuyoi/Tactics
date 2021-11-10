@@ -62,6 +62,14 @@
     margin: 0;
 }
 
+#selected_char_dex{
+    margin: 0;
+}
+
+#selected_char_agi{
+    margin: 0;
+}
+
 #selected_char_step{
     margin: 0;
 }

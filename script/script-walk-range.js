@@ -50,8 +50,8 @@ function WalkTo(x,y){
 
         var elem = document.createElement("img");
         elem.setAttribute("src", selected_field['sprite']);
-        elem.setAttribute("height", "65");
-        elem.setAttribute("width", "65");
+        elem.setAttribute("height", character['height']);
+        elem.setAttribute("width", character['width']);
         document.getElementById("field_"+x+"-"+y).appendChild(elem);
 
         field[x][y] = selected_field;

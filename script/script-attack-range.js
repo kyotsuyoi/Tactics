@@ -13,7 +13,7 @@ function AttackRange(atk_type){
             attack_range = selected_field['mrange'];
             break;
     }
-    //alert(step);
+    
     if(attack_range==1){
         PossibleAttack(selected_x-1,selected_y);
         PossibleAttack(selected_x,selected_y-1);
@@ -62,21 +62,48 @@ function AttackTo(x,y){
         var def;
         var r_atk;
 
+        var dex = selected_field['dex'];        
+        var agi = field[x][y]['agi'];
+        var percent =  Math.round(Math.random() * ((100) - 0) + 0);
+        var hit = (dex*100/agi)/2;
+
+        if(percent > hit){
+            var text = document.createElement("p");
+            text.textContent = "E";        
+            text.setAttribute("id", "damage");
+            document.getElementById("field_"+x+"-"+y).appendChild(text);
+
+            setTimeout(function () {
+                document.getElementById("field_"+x+"-"+y).removeChild(text);       
+            }, 1000); 
+            return true;
+        }
+
         if(attack_type==1){
             atk = selected_field['atk'];
             def = field[x][y]['def'];
         }else{
             atk = selected_field['matk'];
             def = field[x][y]['mdef'];
-            selected_field['sp'] = selected_field['sp'] - 10;
-        }
+            if(selected_field['sp'] - 15 < 0){
+                var text = document.createElement("p");
+                text.textContent = "SP";        
+                text.setAttribute("id", "damage");
+                document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(text);
 
+                setTimeout(function () {
+                    document.getElementById("field_"+selected_x+"-"+selected_y).removeChild(text);       
+                }, 1000);
+                return false;
+            }
+            selected_field['sp'] = selected_field['sp'] - 15;
+        }
        
         if(def > atk){
             round = Math.round(Math.random() * ((atk/2) - 1) + 1);
             r_atk = round; 
         }else{     
-            round = Math.round(Math.random() * ((atk/2) - 0) + 0);          
+            round = Math.round(Math.random() * ((atk/2) - 1) + 1);          
             r_atk = atk - def + (round);          
         }
         field[x][y]['hp'] = hp - r_atk;
@@ -97,27 +124,31 @@ function AttackTo(x,y){
         switch (side){
             case 4:  
                 var img_attack = document.createElement("img");
-                img_attack.setAttribute("src", "src/sword_01.png");
+                img_attack.setAttribute("src", "src/sword_01.png");               
+                img_attack.setAttribute("height", "20");
+                img_attack.setAttribute("width", "20");
                 img_attack.setAttribute("style", "margin-left: -25px; margin-bottom: 18px;");
                 document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(img_attack);
 
                 var img = document.createElement("img");
                 img.setAttribute("src", selected_field['sprite']);
-                img.setAttribute("height", "65");
-                img.setAttribute("width", "65");
+                img.setAttribute("height", selected_field['height']);
+                img.setAttribute("width", selected_field['width']);
                 document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(img);  
                 break;
             case 2:
                 var img = document.createElement("img");
                 img.setAttribute("src", selected_field['sprite']);
-                img.setAttribute("height", "65");
-                img.setAttribute("width", "65");
+                img.setAttribute("height", selected_field['height']);
+                img.setAttribute("width", selected_field['width']);
                 document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(img);        
 
                 var img_attack = document.createElement("img");
-                img_attack.setAttribute("id", "sword");
+                img_attack.setAttribute("id", "sword");               
+                img_attack.setAttribute("height", "20");
+                img_attack.setAttribute("width", "20");
                 img_attack.setAttribute("src", "src/sword_01.png");
-                img_attack.setAttribute("style", "margin-left: 0px; margin-bottom: 18px;");
+                img_attack.setAttribute("style", "margin-left: -20px; margin-bottom: 14px;");
                 document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(img_attack);
 
                 document.getElementById("sword").style.transform = "rotate(90deg)";
@@ -125,8 +156,8 @@ function AttackTo(x,y){
             default:
                 var img = document.createElement("img");
                 img.setAttribute("src", selected_field['sprite']);
-                img.setAttribute("height", "65");
-                img.setAttribute("width", "65");
+                img.setAttribute("height", selected_field['height']);
+                img.setAttribute("width", selected_field['width']);
                 document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(img);  
         }
 

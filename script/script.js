@@ -2,7 +2,7 @@ var selected_field = undefined;
 var selected_x = 0;
 var selected_y = 0;
 
-var size = 8;
+var size = 15;
 
 document.getElementById('block').style.display='none';
 document.getElementById('action-select').style.display='none';
@@ -13,21 +13,9 @@ function Selected(x,y){
     
     if(selected_field == field[x][y]){
 
-        if(selected_field['name'] != undefined){              
-            document.getElementById('field_'+x+"-"+y).style.backgroundColor = "rgba(240, 236, 7, 0.7)";  
-            document.getElementById('action-select').style.display='inline';
-            document.getElementById('block').style.display='inline';
-
-            document.getElementById("selected_char_img").src = "src/"+selected_field['name']+"_1.png";
-            document.getElementById("selected_char_hp").textContent = "HP:" + selected_field['hp'] + "/" + selected_field['maxhp'];
-            document.getElementById("selected_char_sp").textContent = "SP:" + selected_field['sp'] + "/" + selected_field['maxsp'];
-            document.getElementById("selected_char_atk").textContent = "ATK:" + selected_field['atk'];
-            document.getElementById("selected_char_def").textContent = "DEF:" + selected_field['def'];
-            document.getElementById("selected_char_matk").textContent = "MATK:" + selected_field['matk'];
-            document.getElementById("selected_char_mdef").textContent = "MDEF:" + selected_field['mdef'];
-            document.getElementById("selected_char_step").textContent = "STEP:" + selected_field['step'];
-            document.getElementById("selected_char_range").textContent = "RANGE:" + selected_field['range'];
-            document.getElementById("selected_char_mrange").textContent = "MRANGE:" + selected_field['mrange'];
+        if(selected_field['name'] != undefined){    
+            document.getElementById('field_'+x+"-"+y).style.backgroundColor = "rgba(240, 236, 7, 0.7)";            
+            ShowCharacterCard();
         }
         return;
     }
@@ -56,21 +44,9 @@ function Selected(x,y){
     selected_x = x;
     selected_y = y;
 
-    if(selected_field['name'] != undefined){    
-        document.getElementById('field_'+x+"-"+y).style.backgroundColor = "rgba(240, 236, 7, 0.7)";          
-        document.getElementById('action-select').style.display='inline';
-        document.getElementById('block').style.display='inline';
-
-        document.getElementById("selected_char_img").src = "src/"+selected_field['name']+"_1.png";
-        document.getElementById("selected_char_hp").textContent = "HP:" + selected_field['hp'] + "/" + selected_field['maxhp'];
-        document.getElementById("selected_char_sp").textContent = "SP:" + selected_field['sp'] + "/" + selected_field['maxsp'];
-        document.getElementById("selected_char_atk").textContent = "ATK:" + selected_field['atk'];
-        document.getElementById("selected_char_def").textContent = "DEF:" + selected_field['def'];
-        document.getElementById("selected_char_matk").textContent = "MATK:" + selected_field['matk'];
-        document.getElementById("selected_char_mdef").textContent = "MDEF:" + selected_field['mdef'];
-        document.getElementById("selected_char_step").textContent = "STEP:" + selected_field['step'];
-        document.getElementById("selected_char_range").textContent = "RANGE:" + selected_field['range'];
-        document.getElementById("selected_char_mrange").textContent = "MRANGE:" + selected_field['mrange'];
+    if(selected_field['name'] != undefined){  
+        document.getElementById('field_'+x+"-"+y).style.backgroundColor = "rgba(240, 236, 7, 0.7)";    
+        ShowCharacterCard();
     }
 }
 
@@ -115,4 +91,23 @@ function Action(v_action){
             AttackRange(2);
         }
     }
+}
+
+function ShowCharacterCard(){
+    document.getElementById('action-select').style.display='inline';
+    document.getElementById('block').style.display='inline';
+
+    document.getElementById("selected_char_img").src = "src/"+selected_field['name']+"_1.png";
+    document.getElementById("selected_char_hp").textContent = "HP:" + selected_field['hp'] + "/" + selected_field['maxhp'];
+    document.getElementById("selected_char_sp").textContent = "SP:" + selected_field['sp'] + "/" + selected_field['maxsp'];
+    document.getElementById("selected_char_atk").textContent = "ATK:" + selected_field['atk'];
+    document.getElementById("selected_char_def").textContent = "DEF:" + selected_field['def'];
+    document.getElementById("selected_char_matk").textContent = "MATK:" + selected_field['matk'];
+    document.getElementById("selected_char_mdef").textContent = "MDEF:" + selected_field['mdef'];
+    document.getElementById("selected_char_dex").textContent = "DEX:" + selected_field['dex'];
+    document.getElementById("selected_char_agi").textContent = "AGI:" + selected_field['agi'];
+
+    document.getElementById("selected_char_step").textContent = "STEP:" + selected_field['step'];
+    document.getElementById("selected_char_range").textContent = "RANGE:" + selected_field['range'];
+    document.getElementById("selected_char_mrange").textContent = "MRANGE:" + selected_field['mrange'];
 }
