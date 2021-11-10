@@ -4,11 +4,17 @@
 # Movimentação de curto alcance (Personagens de magia)
 ![](readme_files/mov_area01.png)
 
-# Ataque de longo alcance (Personagens de magia)
+# Ataque de médio alcance (Personagens de magia)
 ![](readme_files/atk_area02.png)
 
-# Movimentação de longo alcance (Personagens de dano fisico)
+# Dano magico é alto
+![](readme_files/damage02.png)
+
+# Movimentação de médio alcance (Personagens de dano fisico)
 ![](readme_files/mov_area02.png)
 
 # Ataque de curto alcance (Personagens de dano fisico)
 ![](readme_files/atk_area01.png)
+
+# Dano fisico é médio
+![](readme_files/damage02.png)
