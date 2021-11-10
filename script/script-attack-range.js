@@ -116,7 +116,7 @@ function AttackTo(x,y){
         document.getElementById("field_"+x+"-"+y).appendChild(text);
 
         setTimeout(function () {
-            document.getElementById("field_"+x+"-"+y).removeChild(text);       
+            //document.getElementById("field_"+x+"-"+y).removeChild(text);       
         }, 1000);        
 
         document.getElementById("field_"+selected_x+"-"+selected_y).innerHTML = "";
@@ -162,7 +162,7 @@ function AttackTo(x,y){
         }
 
         setTimeout(function () {
-            document.getElementById("field_"+selected_x+"-"+selected_y).removeChild(img_attack);       
+            //document.getElementById("field_"+selected_x+"-"+selected_y).removeChild(img_attack);       
         }, 500);
 
         attack_type = 0;
