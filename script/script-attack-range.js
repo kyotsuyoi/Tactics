@@ -106,7 +106,24 @@ function AttackTo(x,y){
             round = Math.round(Math.random() * ((atk/2) - 1) + 1);          
             r_atk = atk - def + (round);          
         }
-        field[x][y]['hp'] = hp - r_atk;
+
+        if((hp - r_atk) < 0){
+            field[x][y]['hp'] = 0;
+            
+            document.getElementById("field_"+x+"-"+y).innerHTML="";
+            var img = document.createElement("img");
+            img.setAttribute("src", "src/"+ field[x][y]['name'] +"_3.png");
+            document.getElementById("field_"+x+"-"+y).appendChild(img);
+
+            var rdn = Math.round(Math.random() * (2 - 1) + 1);
+            if(rdn == 1){                
+                img.setAttribute("style", "transform:rotate(-90deg)");
+            }else{                
+                img.setAttribute("style", "transform:rotate(90deg)");
+            }
+        }else{
+            field[x][y]['hp'] = hp - r_atk;
+        }
 
         var side = Side(x,y,selected_field['name']);
 

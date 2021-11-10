@@ -110,4 +110,14 @@ function ShowCharacterCard(){
     document.getElementById("selected_char_step").textContent = "STEP:" + selected_field['step'];
     document.getElementById("selected_char_range").textContent = "RANGE:" + selected_field['range'];
     document.getElementById("selected_char_mrange").textContent = "MRANGE:" + selected_field['mrange'];
+
+    if(selected_field['hp'] <= 0){  
+        document.getElementById("action-select-attack").style.display = "none"; 
+        document.getElementById("action-select-magic").style.display = "none"; 
+        document.getElementById("action-select-walk").style.display = "none"; 
+    }else{
+        document.getElementById("action-select-attack").style.display = "inline"; 
+        document.getElementById("action-select-magic").style.display = "inline"; 
+        document.getElementById("action-select-walk").style.display = "inline"; 
+    }
 }
