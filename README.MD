@@ -1,5 +1,10 @@
 # Personagens
-![](readme_files/characters.png)
+![](readme_files/ch01.png)
+![](readme_files/ch02.png)
+![](readme_files/ch03.png)
+![](readme_files/ch04.png)
+![](readme_files/ch05.png)
+![](readme_files/ch06.png)
 
 # Movimentação de curto alcance (Personagens de magia)
 ![](readme_files/mov_area01.png)
