@@ -3,7 +3,7 @@ var character;
 character = SetCharacter(
     "warrior_girl", 
     "src/warrior_girl_2.png",
-    20, //HP
+    200, //HP
     20, //SP
     20, //ATK
     20, //DEF
