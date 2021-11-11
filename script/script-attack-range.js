@@ -100,14 +100,14 @@ function AttackTo(x,y){
         }
        
         if(def > atk){
-            round = Math.round(Math.random() * ((atk/2) - 1) + 1);
-            r_atk = round; 
+            //round = Math.round(Math.random() * ((atk/2) - 1) + 1);
+            r_atk = 1; 
         }else{     
             round = Math.round(Math.random() * ((atk/2) - 1) + 1);          
             r_atk = atk - def + (round);          
         }
 
-        if((hp - r_atk) < 0){
+        if((hp - r_atk) <= 0){
             field[x][y]['hp'] = 0;
             
             document.getElementById("field_"+x+"-"+y).innerHTML="";

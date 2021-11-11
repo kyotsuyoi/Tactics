@@ -6,7 +6,7 @@ character = SetCharacter(
     "src/warrior_girl_2.png",
     200, //HP
     20, //SP
-    20, //ATK
+    30, //ATK
     20, //DEF
     5, //MATK
     5, //MDEF
@@ -23,7 +23,7 @@ character = SetCharacter(
     "src/wizzard_girl_2.png",
     100, //HP
     120, //SP
-    5, //ATK
+    10, //ATK
     5, //DEF
     40, //MATK
     25, //MDEF
@@ -38,9 +38,9 @@ CharacterPosition(9,5,character);
 character = SetCharacter(
     "squire_man", 
     "src/squire_man_2.png",
-    185, //HP
+    180, //HP
     25, //SP
-    25, //ATK
+    35, //ATK
     15, //DEF
     5, //MATK
     10, //MDEF
@@ -57,7 +57,7 @@ character = SetCharacter(
     "src/mage_girl_4.png",
     120, //HP
     100, //SP
-    5, //ATK
+    10, //ATK
     5, //DEF
     35, //MATK
     30, //MDEF
@@ -72,9 +72,9 @@ CharacterPosition(8,11,character);
 character = SetCharacter(
     "squire_girl", 
     "src/squire_girl_4.png",
-    185, //HP
+    180, //HP
     25, //SP
-    20, //ATK
+    30, //ATK
     15, //DEF
     5, //MATK
     10, //MDEF
@@ -91,7 +91,7 @@ character = SetCharacter(
     "src/warrior_man_4.png",
     200, //HP
     15, //SP
-    25, //ATK
+    30, //ATK
     20, //DEF
     5, //MATK
     5, //MDEF
