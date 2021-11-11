@@ -14,8 +14,7 @@
     height:50px; 
     float:left; 
     margin:1px; 
-    font-size: 
-    48px; 
+    font-size:48px; 
     text-align:center;
 }
 
@@ -34,6 +33,7 @@ div{
 #damage{
     font-size: 40px;
     margin-top: -120px;
+    z-index: 1000;
     color: red;
 } 
 
@@ -42,7 +42,8 @@ div{
     height:50px; 
     float:left; 
     margin:1px; 
-    font-size: 
-    48px; 
-    text-align:center;
+}
+
+#turn{
+    text-align: center;
 }

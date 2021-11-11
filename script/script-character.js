@@ -170,6 +170,23 @@ function SetTurnBatch(){
         elem.setAttribute("src", "src/"+turn[i].name+"_1.png");
         elem.setAttribute("height", 50);
         elem.setAttribute("width", 50);
+
+        switch (i){
+            case 0:
+                elem.setAttribute("style", "background:rgba(0, 0, 255, 1)");
+                break;
+            case 1:
+                elem.setAttribute("style", "background:rgba(0, 255, 1, 1)");
+                break;
+            case 2:
+                elem.setAttribute("style", "background:rgba(255, 255, 0, 1)");
+                break;
+            case 3:
+                elem.setAttribute("style", "background:rgba(255, 128, 0, 1)");
+                break;
+            default:
+                elem.setAttribute("style", "background:rgba(255, 0, 0, 1)");
+        }
         document.getElementById("turn").appendChild(elem);
     }
 }
