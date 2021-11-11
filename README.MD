@@ -22,4 +22,4 @@
 ![](readme_files/atk_area01.png)
 
 # Dano fisico é médio
-![](readme_files/damage02.png)
+![](readme_files/damage01.png)
