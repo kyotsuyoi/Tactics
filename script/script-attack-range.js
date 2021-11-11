@@ -121,6 +121,19 @@ function AttackTo(x,y){
             }else{                
                 img.setAttribute("style", "transform:rotate(90deg)");
             }
+
+            var temp_turn = new Array();
+            var pos = 0;
+            for(i=0;i<=turn.length-1;i++){
+                if(field[x][y].name != turn[i].name){
+                    temp_turn[pos] = turn[i];
+                    pos++;
+                }
+            }
+
+            turn = temp_turn;
+            SetTurnBatch();
+
         }else{
             field[x][y]['hp'] = hp - r_atk;
         }
@@ -183,6 +196,7 @@ function AttackTo(x,y){
         }, 500);
 
         attack_type = 0;
+        turn[0].attack = false;
     }
 
     return is_attack;

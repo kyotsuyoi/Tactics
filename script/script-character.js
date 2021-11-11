@@ -1,4 +1,5 @@
 var character;
+var turn = new Array();
 
 character = SetCharacter(
     "warrior_girl", 
@@ -44,7 +45,7 @@ character = SetCharacter(
     5, //MATK
     10, //MDEF
     10, //DEX
-    4, //AGI
+    5, //AGI
     2, //STEP
     1, //RANGE
     1 //MRANGE
@@ -102,6 +103,19 @@ character = SetCharacter(
 );
 CharacterPosition(7,11,character);
 
+turn.sort(function (a, b) {
+    if (a.agi > b.agi) {
+      return -1;
+    }
+    if (a.agi < b.agi) {
+      return 1;
+    }
+    // a must be equal to b
+    return 0;
+});
+
+SetTurnBatch();
+
 //Para inicializar informações e atributos do personagem
 function SetCharacter(name, sprite, hp, sp, atk, def, matk, mdef, dex, agi, step, range, mrange){
     var character = new Array();
@@ -125,7 +139,8 @@ function SetCharacter(name, sprite, hp, sp, atk, def, matk, mdef, dex, agi, step
     character['height'] = 50; 
     character['width'] = 50; 
 
-    character['turn'] = false;      
+    character['turn'] = false;  
+    CharacterTurn(agi, name);  
     return character;
 }
 
@@ -139,6 +154,24 @@ function CharacterPosition(x,y,character){
     elem.setAttribute("width", character['width']);
     document.getElementById("field_"+x+"-"+y).appendChild(elem);
 }
-  
+
+function CharacterTurn(agi,name){ 
+    turn[turn.length] = new Array();  
+    turn[turn.length-1]['name'] = name;  
+    turn[turn.length-1]['agi'] = agi;  
+    turn[turn.length-1]['attack'] = true;
+    turn[turn.length-1]['walk'] = true;    
+}
+
+function SetTurnBatch(){
+    document.getElementById("turn").innerHTML="";
+    for(i=0;i<=turn.length-1;i++){   
+        var elem = document.createElement("img");
+        elem.setAttribute("src", "src/"+turn[i].name+"_1.png");
+        elem.setAttribute("height", 50);
+        elem.setAttribute("width", 50);
+        document.getElementById("turn").appendChild(elem);
+    }
+}
 
     

@@ -21,6 +21,7 @@ function Selected(x,y){
     }
 
     if(action == "walk"){
+        if (turn[0].name != selected_field.name || turn[0].walk == false) return;
         if(!WalkTo(x,y)) return;
         action=undefined;
         RedoMoveRange(); //script-step-range
@@ -30,6 +31,7 @@ function Selected(x,y){
     }
 
     if(action == "attack" || action == "magic"){
+        if (turn[0].name != selected_field.name || turn[0].attack == false) return;
         if(!AttackTo(x,y)) return;
         action=undefined;
         RedoAttackRange(); //script-step-range
@@ -53,44 +55,55 @@ function Selected(x,y){
 var action = undefined;
 
 function Action(v_action){
-    if(v_action=="return"){
-        document.getElementById('block').style.display='none';
-        document.getElementById('action-select').style.display='none';
-        
-        action=undefined;
+    
+    document.getElementById('block').style.display='none';
+    document.getElementById('action-select').style.display='none';
+
+    if(action != v_action && action != undefined){
+        action = undefined;
         RedoMoveRange();//script-step-range
         RedoAttackRange();//script-step-range
+        document.getElementById('field_'+selected_x+"-"+selected_y).style.backgroundColor = "rgba(240, 236, 7, 0.7)"; 
     }
 
-    if(v_action=="walk"){
-        document.getElementById('block').style.display='none';
-        document.getElementById('action-select').style.display='none';
-
-        if(action==undefined){
-            action = v_action;
+    if(action == undefined){         
+        action = v_action;      
+    
+        if(v_action=="walk"){
             StepRange();
         }
-    }
-
-    if(v_action=="attack"){
-        document.getElementById('block').style.display='none';
-        document.getElementById('action-select').style.display='none';
-
-        if(action==undefined){
-            action = v_action;
+    
+        if(v_action=="attack"){
             AttackRange(1);
         }
-    }
-
-    if(v_action=="magic"){
-        document.getElementById('block').style.display='none';
-        document.getElementById('action-select').style.display='none';
-
-        if(action==undefined){
-            action = v_action;
+    
+        if(v_action=="magic"){
             AttackRange(2);
         }
     }
+
+    if(v_action=="return"){  
+        RedoMoveRange();//script-step-range
+        RedoAttackRange();//script-step-range                  
+        action=undefined;
+    } 
+    
+    if(v_action=="end"){  
+        if (turn[0].name != selected_field.name) return;
+        RedoMoveRange();//script-step-range
+        RedoAttackRange();//script-step-range                  
+        action=undefined;
+
+        turn[0].walk = true;
+        turn[0].attack = true;
+
+        temp = turn[0];
+        for(i=0;i<=turn.length-1;i++){  
+            turn[i] = turn[i+1];
+        }
+        turn[turn.length-1] = temp;
+        SetTurnBatch();
+    }  
 }
 
 function ShowCharacterCard(){

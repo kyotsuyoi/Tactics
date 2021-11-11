@@ -55,6 +55,7 @@ function WalkTo(x,y){
         document.getElementById("field_"+x+"-"+y).appendChild(elem);
 
         field[x][y] = selected_field;
+        turn[0].walk = false;
     }
 
     return is_walk;
