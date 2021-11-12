@@ -17,7 +17,7 @@ character = SetCharacter(
     1, //RANGE
     1, //MRANGE
     2, //ARANGE
-    3 //ARROW
+    2 //ARROW
 );
 CharacterPosition(8,5,character);
 
@@ -57,7 +57,7 @@ character = SetCharacter(
     1, //RANGE
     1, //MRANGE
     2, //ARANGE
-    3 //ARROW
+    2 //ARROW
 );
 CharacterPosition(7,5,character);
 
@@ -65,19 +65,19 @@ character = SetCharacter(
     "archer_girl", 
     "src/archer_girl_2.png",
     "Archer",
-    130, //HP
+    120, //HP
     25, //SP
-    26, //ATK
+    20, //ATK
     10, //DEF
     10, //MATK
     10, //MDEF
-    18, //DEX
-    5, //AGI
+    25, //DEX
+    8, //AGI
     1, //STEP
     1, //RANGE
     1, //MRANGE
     3, //ARANGE
-    10 //ARROW
+    8 //ARROW
 );
 CharacterPosition(8,4,character);
 
@@ -119,7 +119,7 @@ character = SetCharacter(
     1, //RANGE
     1, //MRANGE
     2, //ARANGE
-    3 //ARROW
+    2 //ARROW
 );
 CharacterPosition(9,11,character);
 
@@ -139,7 +139,7 @@ character = SetCharacter(
     1, //RANGE
     1, //MRANGE
     2, //ARANGE
-    3 //ARROW
+    2 //ARROW
 );  
 CharacterPosition(7,11,character);
 
@@ -147,19 +147,19 @@ character = SetCharacter(
     "archer_man", 
     "src/archer_man_4.png",
     "Archer",
-    130, //HP
+    120, //HP
     25, //SP
-    30, //ATK
+    20, //ATK
     10, //DEF
     5, //MATK
     5, //MDEF
-    15, //DEX
+    25, //DEX
     5, //AGI
     1, //STEP
     1, //RANGE
     1, //MRANGE
     3, //ARANGE
-    10 //ARROW
+    8 //ARROW
 );
 CharacterPosition(8,12,character);
 
