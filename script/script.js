@@ -30,7 +30,7 @@ function Selected(x,y){
         return;
     }
 
-    if(action == "attack" || action == "magic"){
+    if(action == "attack" || action == "magic" || action == "arrow"){
         if (turn[0].name != selected_field.name || turn[0].attack == false) return;
         if(!AttackTo(x,y)) return;
         action=undefined;
@@ -76,6 +76,10 @@ function Action(v_action){
         if(v_action=="attack"){
             AttackRange(1);
         }
+
+        if(v_action=="arrow"){
+            AttackRange(3);
+        }
     
         if(v_action=="magic"){
             AttackRange(2);
@@ -111,8 +115,10 @@ function ShowCharacterCard(){
     document.getElementById('block').style.display='inline';
 
     document.getElementById("selected_char_img").src = "src/"+selected_field['name']+"_1.png";
+    document.getElementById("selected_char_class").textContent = "Classe:" + selected_field['pclass'];
     document.getElementById("selected_char_hp").textContent = "HP:" + selected_field['hp'] + "/" + selected_field['maxhp'];
     document.getElementById("selected_char_sp").textContent = "SP:" + selected_field['sp'] + "/" + selected_field['maxsp'];
+
     document.getElementById("selected_char_atk").textContent = "ATK:" + selected_field['atk'];
     document.getElementById("selected_char_def").textContent = "DEF:" + selected_field['def'];
     document.getElementById("selected_char_matk").textContent = "MATK:" + selected_field['matk'];
@@ -123,6 +129,8 @@ function ShowCharacterCard(){
     document.getElementById("selected_char_step").textContent = "STEP:" + selected_field['step'];
     document.getElementById("selected_char_range").textContent = "RANGE:" + selected_field['range'];
     document.getElementById("selected_char_mrange").textContent = "MRANGE:" + selected_field['mrange'];
+    document.getElementById("selected_char_arange").textContent = "ARANGE:" + selected_field['arange'];
+    document.getElementById("selected_char_arrow").textContent = "ARROW:" + selected_field['arrow'];
 
     if(selected_field['hp'] <= 0){  
         document.getElementById("action-select-attack").style.display = "none"; 

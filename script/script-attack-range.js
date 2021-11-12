@@ -12,6 +12,9 @@ function AttackRange(atk_type){
         case 2:
             attack_range = selected_field['mrange'];
             break;
+        case 3:
+            attack_range = 3;
+            break;
     }
     
     if(attack_range==1){
@@ -24,12 +27,27 @@ function AttackRange(atk_type){
     if(attack_range==2){
         PossibleAttack(selected_x-1,selected_y);    PossibleAttack(selected_x-2,selected_y);
         PossibleAttack(selected_x,selected_y-1);    PossibleAttack(selected_x,selected_y-2);
-        PossibleAttack(selected_x-1,selected_y-1);  
         PossibleAttack(selected_x+1,selected_y);    PossibleAttack(selected_x+2,selected_y);
         PossibleAttack(selected_x,selected_y+1);    PossibleAttack(selected_x,selected_y+2);
+        
+        PossibleAttack(selected_x-1,selected_y-1);  
         PossibleAttack(selected_x+1,selected_y+1);  
         PossibleAttack(selected_x-1,selected_y+1);  
         PossibleAttack(selected_x+1,selected_y-1); 
+    }
+
+    if(attack_range==3){
+        PossibleAttack(selected_x-2,selected_y);    PossibleAttack(selected_x-3,selected_y);
+        PossibleAttack(selected_x,selected_y-2);    PossibleAttack(selected_x,selected_y-3);
+        
+        PossibleAttack(selected_x+2,selected_y);    PossibleAttack(selected_x+3,selected_y);
+        PossibleAttack(selected_x,selected_y+2);    PossibleAttack(selected_x,selected_y+3);
+
+        PossibleAttack(selected_x-2,selected_y-1);  PossibleAttack(selected_x-1,selected_y-1);  PossibleAttack(selected_x-1,selected_y-2);
+        PossibleAttack(selected_x+2,selected_y+1);  PossibleAttack(selected_x+1,selected_y+1);  PossibleAttack(selected_x+1,selected_y+2);        
+        
+        PossibleAttack(selected_x-2,selected_y+1);  PossibleAttack(selected_x-1,selected_y+1);  PossibleAttack(selected_x-1,selected_y+2);
+        PossibleAttack(selected_x+2,selected_y-1);  PossibleAttack(selected_x+1,selected_y-1);  PossibleAttack(selected_x+1,selected_y-2);        
     }
 }
 
@@ -79,24 +97,49 @@ function AttackTo(x,y){
             return true;
         }
 
-        if(attack_type==1){
-            atk = selected_field['atk'];
-            def = field[x][y]['def'];
-        }else{
-            atk = selected_field['matk'];
-            def = field[x][y]['mdef'];
-            if(selected_field['sp'] - 15 < 0){
-                var text = document.createElement("p");
-                text.textContent = "SP";        
-                text.setAttribute("id", "damage");
-                document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(text);
+        switch (attack_type){
+            case 1:
+                atk = selected_field['atk'];
+                def = field[x][y]['def'];
+                break;
+            case 2:
+                atk = selected_field['matk'];
+                def = field[x][y]['mdef'];
+                if(selected_field['sp'] - 15 < 0){
+                    var text = document.createElement("p");
+                    text.textContent = "SP";        
+                    text.setAttribute("id", "damage");
+                    document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(text);
 
-                setTimeout(function () {
-                    document.getElementById("field_"+selected_x+"-"+selected_y).removeChild(text);       
-                }, 1000);
+                    setTimeout(function () {
+                        document.getElementById("field_"+selected_x+"-"+selected_y).removeChild(text);       
+                    }, 1000);
+                    return false;
+                }
+                selected_field['sp'] = selected_field['sp'] - 15;
+                break;
+            case 3:
+                atk = selected_field['atk'];
+                if(selected_field.pclass == "archer"){
+                    atk = atk+selected_field['dex'];
+                }
+                def = field[x][y]['def'];
+
+                if(selected_field['arrow'] - 1 < 0){
+                    var text = document.createElement("p");
+                    text.textContent = "X";        
+                    text.setAttribute("id", "damage");
+                    document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(text);
+
+                    setTimeout(function () {
+                        document.getElementById("field_"+selected_x+"-"+selected_y).removeChild(text);       
+                    }, 1000);
+                    return false;
+                }
+                selected_field['arrow'] = selected_field['arrow'] - 1;
+                break;
+            default:
                 return false;
-            }
-            selected_field['sp'] = selected_field['sp'] - 15;
         }
        
         if(def > atk){
@@ -139,61 +182,9 @@ function AttackTo(x,y){
         }
 
         var side = Side(x,y,selected_field['name']);
+        AttackAnim(side);
 
-        var text = document.createElement("p");
-        text.textContent = r_atk;        
-        text.setAttribute("id", "damage");
-        document.getElementById("field_"+x+"-"+y).appendChild(text);
-
-        setTimeout(function () {
-            document.getElementById("field_"+x+"-"+y).removeChild(text);       
-        }, 1000);        
-
-        document.getElementById("field_"+selected_x+"-"+selected_y).innerHTML = "";
-
-        switch (side){
-            case 4:  
-                var img_attack = document.createElement("img");
-                img_attack.setAttribute("src", "src/sword_01.png");               
-                img_attack.setAttribute("height", "20");
-                img_attack.setAttribute("width", "20");
-                img_attack.setAttribute("style", "margin-left: -25px; margin-bottom: 18px;");
-                document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(img_attack);
-
-                var img = document.createElement("img");
-                img.setAttribute("src", selected_field['sprite']);
-                img.setAttribute("height", selected_field['height']);
-                img.setAttribute("width", selected_field['width']);
-                document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(img);  
-                break;
-            case 2:
-                var img = document.createElement("img");
-                img.setAttribute("src", selected_field['sprite']);
-                img.setAttribute("height", selected_field['height']);
-                img.setAttribute("width", selected_field['width']);
-                document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(img);        
-
-                var img_attack = document.createElement("img");
-                img_attack.setAttribute("id", "sword");               
-                img_attack.setAttribute("height", "20");
-                img_attack.setAttribute("width", "20");
-                img_attack.setAttribute("src", "src/sword_01.png");
-                img_attack.setAttribute("style", "margin-left: -20px; margin-bottom: 14px;");
-                document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(img_attack);
-
-                document.getElementById("sword").style.transform = "rotate(90deg)";
-                break;
-            default:
-                var img = document.createElement("img");
-                img.setAttribute("src", selected_field['sprite']);
-                img.setAttribute("height", selected_field['height']);
-                img.setAttribute("width", selected_field['width']);
-                document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(img);  
-        }
-
-        setTimeout(function () {
-            document.getElementById("field_"+selected_x+"-"+selected_y).removeChild(img_attack);       
-        }, 500);
+        DamageAnim(r_atk,x,y);
 
         attack_type = 0;
         turn[0].attack = false;
@@ -216,20 +207,115 @@ function RedoAttackRange(){
 }
 
 function Side(x,y,name){
-    if(selected_y < y){
+    if(selected_y < y){ //Direita
         selected_field['sprite'] = "src/"+name+"_2.png";
         return 2;
     }
-    if(selected_y > y){
+    if(selected_y > y){ //Esquerda
         selected_field['sprite'] = "src/"+name+"_4.png";
-        return 4;
+        return 4; 
     }
-    if(selected_x > x){
+    if(selected_x > x){ //Cima
         selected_field['sprite'] = "src/"+name+"_3.png";
         return 3;
     }
-    if(selected_x < x){
+    if(selected_x < x){ //Baixo
         selected_field['sprite'] = "src/"+name+"_1.png";
         return 1;
     }
+}
+
+function AttackAnim(side){
+    document.getElementById("field_"+selected_x+"-"+selected_y).innerHTML = "";
+    
+    var weapon = document.createElement("img");        
+    var sprite = document.createElement("img");
+    sprite.setAttribute("src", selected_field['sprite']);
+    sprite.setAttribute("height", selected_field['height']);
+    sprite.setAttribute("width", selected_field['width']); 
+
+    switch (side){       
+        
+        case 2: //Direita
+            weapon.setAttribute("id", "weapon");    
+            weapon.setAttribute("class", "weapon_right");
+            weapon.setAttribute("left", "-24");
+            weapon.setAttribute("src", "src/sword_01.png");
+            document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(weapon);
+
+            document.getElementById("weapon").style.transform = "rotate(90deg)";
+
+            setTimeout(function () {                
+                document.getElementById("weapon").style.top = "10px";  
+                document.getElementById("weapon").style.transform = "rotate(135deg)";  
+            }, 200);
+             
+            sprite.setAttribute("class", "character_right");
+            document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(sprite);    
+            break;
+
+        case 4: //Esquerda
+            weapon.setAttribute("id", "weapon");       
+            weapon.setAttribute("class", "weapon_left");
+            weapon.setAttribute("src", "src/sword_01.png");  
+            document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(weapon);
+
+            setTimeout(function () {                
+                document.getElementById("weapon").style.top = "10px";  
+                document.getElementById("weapon").style.transform = "rotate(-45deg)";  
+            }, 200);
+
+            sprite.setAttribute("class", "character_left");
+            document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(sprite);  
+            break;
+
+        case 3:
+            weapon.setAttribute("id", "weapon");       
+            weapon.setAttribute("class", "weapon_up");
+            weapon.setAttribute("src", "src/sword_01.png");  
+            document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(weapon);
+
+            setTimeout(function () {                
+                document.getElementById("weapon").style.top = "-30px";  
+                document.getElementById("weapon").style.left = "10px"; 
+                document.getElementById("weapon").style.transform = "rotate(45deg)";  
+            }, 200);
+
+            sprite.setAttribute("class", "character_up");
+            document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(sprite); 
+            break;
+
+        case 1:
+            weapon.setAttribute("id", "weapon");       
+            weapon.setAttribute("class", "weapon_down");
+            weapon.setAttribute("src", "src/sword_01.png");  
+            document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(weapon);
+
+            setTimeout(function () {                
+                document.getElementById("weapon").style.top = "34px";  
+                document.getElementById("weapon").style.transform = "rotate(-135deg)";  
+                document.getElementById("weapon").style.zIndex = "2"; 
+            }, 200);
+
+            sprite.setAttribute("class", "character_down");
+            document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(sprite); 
+            break;
+    }
+
+    setTimeout(function () {
+        document.getElementById("field_"+selected_x+"-"+selected_y).removeChild(weapon);   
+        sprite.setAttribute("class", "character_center");   
+    }, 400);
+}
+
+function DamageAnim(r_atk,x,y){
+    var text = document.createElement("p");
+    text.textContent = r_atk;        
+    text.setAttribute("id", "damage");
+    document.getElementById("field_"+x+"-"+y).appendChild(text);     
+    document.getElementById("sword").style.zIndex = "10"; 
+
+    setTimeout(function () {
+        document.getElementById("field_"+x+"-"+y).removeChild(text);       
+    }, 1000); 
 }

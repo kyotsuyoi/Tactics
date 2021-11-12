@@ -1,0 +1,60 @@
+.weapon_left, .weapon_right, .weapon_up, .weapon_down, .character_left, .character_right, .character_center{
+    display: block;
+    position: relative;
+    top: 0px;
+    z-index: 0;
+}
+
+.character_left, .character_right, .character_up, .character_down, .character_center{
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.weapon_left{
+    left: -24px;
+} 
+
+.weapon_right{
+    left: 42px;
+} 
+
+.weapon_up{
+    left: 0px;
+} 
+
+.weapon_down{
+    left: 9px;
+} 
+
+.character_left{
+    left: -8px;
+    top: -32px;
+} 
+
+.character_right{
+    left: 8px;
+    top: -32px;
+} 
+
+.character_up{
+    left: 0px;
+    top: -40px;
+} 
+
+.character_down{
+    left: 0px;
+    top: -32px;
+} 
+
+.character_center{
+    left: 0px;
+    top: 0px;
+} 
+
+#damage{
+    font-size: 40px;
+    margin-top: -80px;
+    z-index: 1000;
+    color: red;
+} 

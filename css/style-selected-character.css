@@ -34,51 +34,7 @@
     margin-bottom: 10px;
 }
 
-#selected_char_hp{
-    margin: 0;
-}
-
-#selected_char_sp{
-    margin: 0;
-}
-
-#selected_char_atk{
-    margin: 0;
-}
-
-#selected_char_atk{
-    margin: 0;
-}
-
-#selected_char_def{
-    margin: 0;
-}
-
-#selected_char_matk{
-    margin: 0;
-}
-
-#selected_char_mdef{
-    margin: 0;
-}
-
-#selected_char_dex{
-    margin: 0;
-}
-
-#selected_char_agi{
-    margin: 0;
-}
-
-#selected_char_step{
-    margin: 0;
-}
-
-#selected_char_range{
-    margin: 0;
-}
-
-#selected_char_mrange{
+.selected_char{
     margin: 0;
 }
 
