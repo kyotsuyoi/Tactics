@@ -25,7 +25,7 @@ CharacterPosition(8,5,character);
 character = SetCharacter(
     "wizzard",
     "female",
-    "wf01", 
+    "wif01", 
     2, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -240,8 +240,8 @@ function SetCharacter(pclass, sex, id, sprite, hp, sp, atk, def, matk, mdef, dex
             character['def'] = def + 30; 
             character['matk'] = matk + 0; 
             character['mdef'] = mdef + 5; 
-            character['dex'] = dex + 10; 
-            character['agi'] = agi + 5; 
+            character['dex'] = dex + 12; 
+            character['agi'] = agi + 4; 
         
             character['step'] = step + 2; 
             character['range'] = range + 1; 
@@ -352,6 +352,27 @@ function SetCharacter(pclass, sex, id, sprite, hp, sp, atk, def, matk, mdef, dex
             character['range'] = range + 1; 
             character['mrange'] = mrange + 2; 
             character['arange'] = arange + 2; 
+        
+            character['arrow'] = arrow + 0; 
+            break;
+        
+        case "necro":
+            character['hp'] = hp + 120; 
+            character['maxhp'] = character['hp'];     
+            character['sp'] = sp + 80; 
+            character['maxsp'] = character['sp'];  
+
+            character['atk'] = atk + 10; 
+            character['def'] = def + 10; 
+            character['matk'] = matk + 20; 
+            character['mdef'] = mdef + 10; 
+            character['dex'] = dex + 8; 
+            character['agi'] = agi + 8; 
+        
+            character['step'] = step + 2; 
+            character['range'] = range + 2; 
+            character['mrange'] = mrange + 2; 
+            character['arange'] = arange + 0; 
         
             character['arrow'] = arrow + 0; 
             break;

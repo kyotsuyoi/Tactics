@@ -113,7 +113,7 @@ function AttackTo(x,y){
         
         var side = Side(x,y,selected_field.pclass,selected_field.sex);
         AttackAnim(side);
-
+        
         if(Flee(x,y)) return;
 
         switch (attack_type){
@@ -369,6 +369,9 @@ function DamageAnim(r_atk,x,y){
 }
 
 function Flee(x, y){
+    if(selected_field.pclass=="healer"){
+        return false;
+    }
     var dex = selected_field['dex'];        
     var agi = field[x][y]['agi'];
     var percent =  Math.round(Math.random() * ((100) - 0) + 0);
@@ -380,4 +383,5 @@ function Flee(x, y){
         turn[0].attack = false;
         return true;
     }
+    return false;
 }
