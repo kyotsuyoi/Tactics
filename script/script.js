@@ -13,7 +13,7 @@ function Selected(x,y){
     
     if(selected_field == field[x][y]){
 
-        if(selected_field['name'] != undefined){    
+        if(selected_field['id'] != undefined){    
             document.getElementById('field_'+x+"-"+y).style.backgroundColor = "rgba(240, 236, 7, 0.7)";            
             ShowCharacterCard();
         }
@@ -21,32 +21,34 @@ function Selected(x,y){
     }
 
     if(action == "walk"){
-        if (turn[0].name != selected_field.name || turn[0].walk == false) return;
+        if (turn[0].id != selected_field.id || turn[0].walk == false) return;
         if(!WalkTo(x,y)) return;
         action=undefined;
-        RedoMoveRange(); //script-step-range
         selected_x = x;
         selected_y = y;
+        RedoMoveRange(); //script-step
+        //ShowCharacterCard();
         return;
     }
 
     if(action == "attack" || action == "magic" || action == "arrow"){
-        if (turn[0].name != selected_field.name || turn[0].attack == false) return;
+        if (turn[0].id != selected_field.id || turn[0].attack == false) return;
         if(!AttackTo(x,y)) return;
         action=undefined;
-        RedoAttackRange(); //script-step-range
+        RedoAttackRange(); //script-step
+        //ShowCharacterCard();
         return;
     }
 
     if(selected_field != undefined){ 
-        RedoMoveRange();//script-step-range
-        RedoAttackRange();//script-step-range
+        RedoMoveRange();//script-step
+        RedoAttackRange();//script-step
     }
     selected_field=field[x][y];
     selected_x = x;
     selected_y = y;
 
-    if(selected_field['name'] != undefined){  
+    if(selected_field['id'] != undefined){  
         document.getElementById('field_'+x+"-"+y).style.backgroundColor = "rgba(240, 236, 7, 0.7)";    
         ShowCharacterCard();
     }
@@ -61,8 +63,8 @@ function Action(v_action){
 
     if(action != v_action && action != undefined){
         action = undefined;
-        RedoMoveRange();//script-step-range
-        RedoAttackRange();//script-step-range
+        RedoMoveRange();//script-step
+        RedoAttackRange();//script-step
         document.getElementById('field_'+selected_x+"-"+selected_y).style.backgroundColor = "rgba(240, 236, 7, 0.7)"; 
     }
 
@@ -87,25 +89,27 @@ function Action(v_action){
     }
 
     if(v_action=="return"){  
-        RedoMoveRange();//script-step-range
-        RedoAttackRange();//script-step-range                  
+        RedoMoveRange();//script-step
+        RedoAttackRange();//script-step                  
         action=undefined;
     } 
     
     if(v_action=="end"){  
-        if (turn[0].name != selected_field.name) return;
-        RedoMoveRange();//script-step-range
-        RedoAttackRange();//script-step-range                  
+        if (turn[0].id != selected_field.id) return;
+        RedoMoveRange();//script-step
+        RedoAttackRange();//script-step                  
         action=undefined;
 
         turn[0].walk = true;
         turn[0].attack = true;
 
-        temp = turn[0];
-        for(i=0;i<=turn.length-1;i++){  
-            turn[i] = turn[i+1];
-        }
-        turn[turn.length-1] = temp;
+        // temp = turn[0];
+        // for(i=0;i<=turn.length-1;i++){  
+        //     turn[i] = turn[i+1];
+        // }
+        // turn[turn.length-1] = temp;
+
+        EndTurn();
         SetTurnBatch();
     }  
 }
@@ -114,7 +118,7 @@ function ShowCharacterCard(){
     document.getElementById('action-select').style.display='inline';
     document.getElementById('block').style.display='inline';
 
-    document.getElementById("selected_char_img").src = "src/"+selected_field['name']+"_1.png";
+    document.getElementById("selected_char_img").src = "src/character/"+selected_field.pclass+"_"+selected_field.sex+"_1.png";
     document.getElementById("selected_char_class").textContent = "Classe:" + selected_field['pclass'];
     document.getElementById("selected_char_hp").textContent = "HP:" + selected_field['hp'] + "/" + selected_field['maxhp'];
     document.getElementById("selected_char_sp").textContent = "SP:" + selected_field['sp'] + "/" + selected_field['maxsp'];
@@ -134,10 +138,12 @@ function ShowCharacterCard(){
 
     if(selected_field['hp'] <= 0){  
         document.getElementById("action-select-attack").style.display = "none"; 
+        document.getElementById("action-select-arrow").style.display = "none"; 
         document.getElementById("action-select-magic").style.display = "none"; 
         document.getElementById("action-select-walk").style.display = "none"; 
     }else{
         document.getElementById("action-select-attack").style.display = "inline"; 
+        document.getElementById("action-select-arrow").style.display = "inline"; 
         document.getElementById("action-select-magic").style.display = "inline"; 
         document.getElementById("action-select-walk").style.display = "inline"; 
     }

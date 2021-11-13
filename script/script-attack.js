@@ -49,7 +49,7 @@ function AttackRange(atk_type){
         PossibleAttack(selected_x-2,selected_y+1);  PossibleAttack(selected_x-1,selected_y+1);  PossibleAttack(selected_x-1,selected_y+2);
         PossibleAttack(selected_x+2,selected_y-1);  PossibleAttack(selected_x+1,selected_y-1);  PossibleAttack(selected_x+1,selected_y-2); 
         
-        if(selected_field.pclass=="Archer"){
+        if(selected_field.pclass=="archer"){
             PossibleAttack(selected_x+4,selected_y);   
             PossibleAttack(selected_x,selected_y+4); 
             PossibleAttack(selected_x-4,selected_y);  
@@ -75,10 +75,18 @@ function AttackRange(atk_type){
 }
 
 function PossibleAttack(px,py){
-    if(px>0 && px < size+1 && py > 0 && py < size+1){// && 
+    if(px>0 && px < size+1 && py > 0 && py < size+1){
         document.getElementById('field_'+(px)+'-'+(py)).src = null;
-        document.getElementById('field_'+(px)+'-'+(py)).style.backgroundColor = "rgba(242, 12, 12, 0.7)"; //muda cor de fundo
-        possible_attack[count] = "field_"+(px)+"-"+(py); 
+        document.getElementById('field_'+px+'-'+py).style.cursor="pointer"; 
+        if(selected_field.pclass=="healer" && attack_type==2){
+            document.getElementById('field_'+(px)+'-'+(py)).style.backgroundColor = "rgba(12, 242, 12, 0.7)"; //muda cor de fundo para verde
+        }else{
+            document.getElementById('field_'+(px)+'-'+(py)).style.backgroundColor = "rgba(242, 12, 12, 0.7)"; //muda cor de fundo para vermelho
+        }
+        // possible_attack[count] = "field_"+(px)+"-"+(py); 
+        possible_attack[count] = new Array; 
+        possible_attack[count]['x'] = px; 
+        possible_attack[count]['y'] = py; 
         count++;
     }
 }
@@ -87,14 +95,14 @@ function AttackTo(x,y){
     var i;
     var is_attack = false;
     for(i=0;i<=possible_attack.length;i++){ 
-        if(possible_attack[i]=="field_"+x+"-"+y){
+        if("field_"+possible_attack[i].x+"-"+possible_attack[i].y == "field_"+x+"-"+y){
             is_attack=true;
             i=possible_attack.length;
         }
     }
 
     if(is_attack){
-        if(field[x][y]['name'] == undefined){            
+        if(field[x][y]['id'] == undefined){            
             return false;
         }
 
@@ -102,30 +110,18 @@ function AttackTo(x,y){
         var atk;
         var def;
         var r_atk;
+        
+        var side = Side(x,y,selected_field.pclass,selected_field.sex);
+        AttackAnim(side);
 
-        var dex = selected_field['dex'];        
-        var agi = field[x][y]['agi'];
-        var percent =  Math.round(Math.random() * ((100) - 0) + 0);
-        var hit = (dex*100/agi)/2;
-
-        if(percent > hit){
-            var text = document.createElement("p");
-            text.textContent = "E";        
-            text.setAttribute("id", "damage");
-            document.getElementById("field_"+x+"-"+y).appendChild(text);
-
-            setTimeout(function () {
-                document.getElementById("field_"+x+"-"+y).removeChild(text);       
-            }, 1000); 
-            return true;
-        }
+        if(Flee(x,y)) return;
 
         switch (attack_type){
             case 1:
                 atk = selected_field['atk'];
                 def = field[x][y]['def'];
                 break;
-            case 2:
+            case 2:                
                 atk = selected_field['matk'];
                 def = field[x][y]['mdef'];
                 if(selected_field['sp'] - 15 < 0){
@@ -143,7 +139,7 @@ function AttackTo(x,y){
                 break;
             case 3:
                 atk = selected_field['atk'];
-                if(selected_field.pclass == "Archer"){
+                if(selected_field.pclass == "archer"){
                     atk = atk+selected_field['dex'];
                 }
                 def = field[x][y]['def'];
@@ -161,89 +157,101 @@ function AttackTo(x,y){
                 }
                 selected_field['arrow'] = selected_field['arrow'] - 1;
                 break;
+                
             default:
                 return false;
-        }
-       
-        if(def > atk){
-            //round = Math.round(Math.random() * ((atk/2) - 1) + 1);
-            r_atk = 1; 
-        }else{     
-            round = Math.round(Math.random() * ((atk/2) - 1) + 1);          
-            r_atk = atk - def + (round);          
-        }
+        }  
 
-        if((hp - r_atk) <= 0){
-            field[x][y]['hp'] = 0;
-            
-            document.getElementById("field_"+x+"-"+y).innerHTML="";
-            var img = document.createElement("img");
-            img.setAttribute("src", "src/"+ field[x][y]['name'] +"_3.png");
-            document.getElementById("field_"+x+"-"+y).appendChild(img);
+        var round = Math.round(Math.random() * ((atk/2) - 1) + 1);
 
-            var rdn = Math.round(Math.random() * (2 - 1) + 1);
-            if(rdn == 1){                
-                img.setAttribute("style", "transform:rotate(-90deg)");
-            }else{                
-                img.setAttribute("style", "transform:rotate(90deg)");
+        if(selected_field.pclass=="healer"){
+            r_atk = atk/2 + round;
+
+            if(hp <= 0){
+                AddToBatch(field[x][y].id,field[x][y].agi,field[x][y].pclass,field[x][y].sex);
+                SetTurnBatch();
             }
 
-            var temp_turn = new Array();
-            var pos = 0;
-            for(i=0;i<=turn.length-1;i++){
-                if(field[x][y].name != turn[i].name){
-                    temp_turn[pos] = turn[i];
-                    pos++;
-                }
+            if((hp + r_atk) >= field[x][y]['maxhp']){
+                field[x][y]['hp'] = field[x][y]['maxhp'];
+            }else{
+                field[x][y]['hp'] = hp + r_atk;
             }
-
-            turn = temp_turn;
-            SetTurnBatch();
 
         }else{
-            field[x][y]['hp'] = hp - r_atk;
-        }
+            r_atk = atk + round - def;  
+            if(def > atk){
+                round = Math.round(Math.random() * ((atk/2) - 1) + 1);
+                r_atk = round; 
+            }
 
-        var side = Side(x,y,selected_field['name']);
-        AttackAnim(side);
+            if((hp - r_atk) <= 0){
+                field[x][y]['hp'] = 0;
+                
+                document.getElementById("field_"+x+"-"+y).innerHTML="";
+                var img = document.createElement("img");
+                img.setAttribute("src", "src/character/"+ field[x][y].pclass+"_"+field[x][y].sex +"_3.png");
+                document.getElementById("field_"+x+"-"+y).appendChild(img);
+
+                var rdn = Math.round(Math.random() * (2 - 1) + 1);
+                if(rdn == 1){                
+                    img.setAttribute("style", "transform:rotate(-90deg)");
+                }else{                
+                    img.setAttribute("style", "transform:rotate(90deg)");
+                }
+
+                RemoveFromBatch(field[x][y]['id']);                
+                SetTurnBatch();
+
+            }else{
+                field[x][y]['hp'] = hp - r_atk;
+            }
+        }        
 
         DamageAnim(r_atk,x,y);
 
         attack_type = 0;
         turn[0].attack = false;
+        
+        document.getElementById("field_"+selected_x+"-"+selected_y).style.cursor="pointer";
     }
 
     return is_attack;
 }
 
 function RedoAttackRange(){
-    var cf;
-    document.getElementById('field_'+selected_x+"-"+selected_y).style.backgroundColor = "";  
+    var i;
 
-    for(cf=0;cf<possible_attack.length;cf++){
-        document.getElementById(possible_attack[cf]).style.backgroundColor = "";
-        document.getElementById(possible_attack[cf]).style.opacity = "1";
+    document.getElementById('field_'+selected_x+"-"+selected_y).style.backgroundColor = "";  
+    for(i=0;i<possible_attack.length;i++){
+        document.getElementById('field_'+possible_attack[i].x+"-"+possible_attack[i].y).style.backgroundColor = "";
+        document.getElementById('field_'+possible_attack[i].x+"-"+possible_attack[i].y).style.opacity = "1";
+
+        x=possible_attack[i].x; y=possible_attack[i].y;
+        if(field[x][y]['character'] == false){      
+            document.getElementById('field_'+possible_attack[i].x+"-"+possible_attack[i].y).style.cursor="auto";
+        }
     }	
 
     count = 0;
     possible_attack = new Array;
 }
 
-function Side(x,y,name){
+function Side(x,y,pclass,sex){
     if(selected_y < y){ //Direita
-        selected_field['sprite'] = "src/"+name+"_2.png";
+        selected_field['sprite'] = "src/character/"+pclass+"_"+sex+"_2.png";
         return 2;
     }
     if(selected_y > y){ //Esquerda
-        selected_field['sprite'] = "src/"+name+"_4.png";
+        selected_field['sprite'] = "src/character/"+pclass+"_"+sex+"_4.png";
         return 4; 
     }
     if(selected_x > x){ //Cima
-        selected_field['sprite'] = "src/"+name+"_3.png";
+        selected_field['sprite'] = "src/character/"+pclass+"_"+sex+"_3.png";
         return 3;
     }
     if(selected_x < x){ //Baixo
-        selected_field['sprite'] = "src/"+name+"_1.png";
+        selected_field['sprite'] = "src/character/"+pclass+"_"+sex+"_1.png";
         return 1;
     }
 }
@@ -277,7 +285,7 @@ function AttackAnim(side){
         case 2: //Direita 
             weapon.setAttribute("class", "weapon_right");
             weapon.setAttribute("left", "-24");
-            weapon.setAttribute("src", "src/"+weapon_sprite+".png");
+            weapon.setAttribute("src", "src/weapon/"+weapon_sprite+".png");
             document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(weapon);
 
             document.getElementById("weapon").style.transform = "rotate(90deg)";
@@ -293,7 +301,7 @@ function AttackAnim(side){
 
         case 4: //Esquerda     
             weapon.setAttribute("class", "weapon_left");
-            weapon.setAttribute("src", "src/"+weapon_sprite+".png");  
+            weapon.setAttribute("src", "src/weapon/"+weapon_sprite+".png");  
             document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(weapon);
 
             setTimeout(function () {                
@@ -307,7 +315,7 @@ function AttackAnim(side){
 
         case 3:     
             weapon.setAttribute("class", "weapon_up");
-            weapon.setAttribute("src", "src/"+weapon_sprite+".png");  
+            weapon.setAttribute("src", "src/weapon/"+weapon_sprite+".png");  
             document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(weapon);
 
             setTimeout(function () {                
@@ -322,7 +330,7 @@ function AttackAnim(side){
 
         case 1:      
             weapon.setAttribute("class", "weapon_down");
-            weapon.setAttribute("src", "src/"+weapon_sprite+".png");  
+            weapon.setAttribute("src", "src/weapon/"+weapon_sprite+".png");  
             document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(weapon);
             
             document.getElementById("weapon").style.transform = "rotate(-90deg)";  
@@ -347,11 +355,29 @@ function AttackAnim(side){
 function DamageAnim(r_atk,x,y){
     var text = document.createElement("p");
     text.textContent = r_atk;        
-    text.setAttribute("id", "damage");
+    text.setAttribute("id", "damage"); 
+    if(selected_field.pclass=="healer" && attack_type==2){
+        text.setAttribute("style", "color:greenyellow");
+    }
     document.getElementById("field_"+x+"-"+y).appendChild(text);     
     document.getElementById("weapon").style.zIndex = "10"; 
 
     setTimeout(function () {
-        document.getElementById("field_"+x+"-"+y).removeChild(text);       
+        document.getElementById("field_"+x+"-"+y).removeChild(text);        
+        text.setAttribute("style", "color:red");      
     }, 1000); 
+}
+
+function Flee(x, y){
+    var dex = selected_field['dex'];        
+    var agi = field[x][y]['agi'];
+    var percent =  Math.round(Math.random() * ((100) - 0) + 0);
+    var hit = (dex*100/agi)/2;        
+    
+    if(percent > hit){
+        DamageAnim("E",x,y);
+        attack_type = 0;
+        turn[0].attack = false;
+        return true;
+    }
 }

@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
 <html lang="pt-BR">
 
-    <head>        
-        <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
+    <head>       
+        <meta charset="utf-8"> 
+        <!-- <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" /> -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="css/style-selected-character.css" media="screen"/>
@@ -12,8 +13,8 @@
 
     <body id="body">
 
-        <div id="block" style="display: none;"></div>
-        <div id="action-select" style="display: none;" class="select">
+        <div id="block"></div>
+        <div id="action-select" class="select">
             <div>
                 <img id="selected_char_img">
             </div>
@@ -38,12 +39,12 @@
                 -------------------------------------
             </div>
             <div id="action-select-buttons">
-                <div id="action-select-attack" onclick="Action('attack');">⚔️</div>
-                <div id="action-select-attack" onclick="Action('arrow');">🏹</div>
-                <div id="action-select-magic" onclick="Action('magic');">✨</div>
-                <div id="action-select-walk" onclick="Action('walk');">🥾</div>
-                <div onclick="Action('return');">❌</div>
-                <div onclick="Action('end');">✔️</div>
+                <div id="action-select-attack" class="button" onclick="Action('attack');">⚔️</div>
+                <div id="action-select-arrow" class="button" onclick="Action('arrow');">🏹</div>
+                <div id="action-select-magic" class="button" onclick="Action('magic');">✨</div>
+                <div id="action-select-walk" class="button" onclick="Action('walk');">🥾</div>
+                <div class="button" onclick="Action('return');">❌</div>
+                <div class="button" onclick="Action('end');">✔️</div>
             </div>   
         </div>
 
@@ -53,8 +54,8 @@
         <script src="script/script-field.js"></script>
         <script src="script/script.js"></script>
         <script src="script/script-character.js"></script>
-        <script src="script/script-walk-range.js"></script>
-        <script src="script/script-attack-range.js"></script>
+        <script src="script/script-walk.js"></script>
+        <script src="script/script-attack.js"></script>
     </body>
 </html>
 

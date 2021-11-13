@@ -1,168 +1,218 @@
 var character;
 var turn = new Array();
 
-character = SetCharacter(
-    "warrior_girl", 
-    "src/warrior_girl_2.png",
-    "Warrior",
-    200, //HP
-    20, //SP
-    30, //ATK
-    20, //DEF
-    5, //MATK
-    5, //MDEF
-    12, //DEX
-    4, //AGI
-    2, //STEP
-    1, //RANGE
-    1, //MRANGE
-    2, //ARANGE
-    2 //ARROW
+character = SetCharacter(    
+    "knight", 
+    "female",
+    "kf01", 
+    2, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
+    0 //ARROW
 );
 CharacterPosition(8,5,character);
 
 character = SetCharacter(
-    "wizzard_girl", 
-    "src/wizzard_girl_2.png",
-    "Wizzard",
-    100, //HP
-    120, //SP
-    10, //ATK
-    5, //DEF
-    40, //MATK
-    25, //MDEF
-    20, //DEX
-    1, //AGI
-    1, //STEP
-    1, //RANGE
-    2, //MRANGE
-    2, //ARANGE
+    "wizzard",
+    "female",
+    "wf01", 
+    2, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
     0 //ARROW
 );
 CharacterPosition(9,5,character);
 
 character = SetCharacter(
-    "squire_man", 
-    "src/squire_man_2.png",
-    "Squire",
-    180, //HP
-    25, //SP
-    35, //ATK
-    15, //DEF
-    5, //MATK
-    10, //MDEF
-    10, //DEX
-    5, //AGI
-    2, //STEP
-    1, //RANGE
-    1, //MRANGE
-    2, //ARANGE
-    2 //ARROW
+    "warrior",
+    "male",
+    "wm01", 
+    2, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
+    0 //ARROW
 );
 CharacterPosition(7,5,character);
 
 character = SetCharacter(
-    "archer_girl", 
-    "src/archer_girl_2.png",
-    "Archer",
-    120, //HP
-    25, //SP
-    20, //ATK
-    10, //DEF
-    10, //MATK
-    10, //MDEF
-    25, //DEX
-    8, //AGI
-    1, //STEP
-    1, //RANGE
-    1, //MRANGE
-    3, //ARANGE
-    8 //ARROW
+    "archer",
+    "female",
+    "af0l", 
+    2, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
+    0 //ARROW
 );
 CharacterPosition(8,4,character);
+
+character = SetCharacter(
+    "healer",
+    "female_2",
+    "hf01", 
+    2, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
+    0 //ARROW
+);
+CharacterPosition(9,4,character);
 
 //////////////////////////////////////////
 
 character = SetCharacter(
-    "mage_girl", 
-    "src/mage_girl_4.png",
-    "Mage",
-    120, //HP
-    100, //SP
-    10, //ATK
-    5, //DEF
-    35, //MATK
-    30, //MDEF
-    22, //DEX
-    1, //AGI
-    1, //STEP
-    1, //RANGE
-    2, //MRANGE
-    2, //ARANGE
+    "mage",
+    "female",
+    "mf01", 
+    4, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
     0 //ARROW
 );
 CharacterPosition(8,11,character);
 
 character = SetCharacter(
-    "squire_girl", 
-    "src/squire_girl_4.png",
-    "Squire",
-    180, //HP
-    25, //SP
-    30, //ATK
-    15, //DEF
-    5, //MATK
-    10, //MDEF
-    10, //DEX
-    6, //AGI
-    2, //STEP
-    1, //RANGE
-    1, //MRANGE
-    2, //ARANGE
-    2 //ARROW
+    "warrior",
+    "female",
+    "wf01", 
+    4, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
+    0 //ARROW
 );
 CharacterPosition(9,11,character);
 
 character = SetCharacter(
-    "warrior_man", 
-    "src/warrior_man_4.png",
-    "Warrior",
-    200, //HP
-    15, //SP
-    30, //ATK
-    20, //DEF
-    5, //MATK
-    5, //MDEF
-    10, //DEX
-    4, //AGI
-    2, //STEP
-    1, //RANGE
-    1, //MRANGE
-    2, //ARANGE
-    2 //ARROW
+    "knight",
+    "male",
+    "km01", 
+    4, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
+    0 //ARROW
 );  
 CharacterPosition(7,11,character);
 
 character = SetCharacter(
-    "archer_man", 
-    "src/archer_man_4.png",
-    "Archer",
-    120, //HP
-    25, //SP
-    20, //ATK
-    10, //DEF
-    5, //MATK
-    5, //MDEF
-    25, //DEX
-    5, //AGI
-    1, //STEP
-    1, //RANGE
-    1, //MRANGE
-    3, //ARANGE
-    8 //ARROW
+    "archer",
+    "male",
+    "am01", 
+    4, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
+    0 //ARROW
 );
 CharacterPosition(8,12,character);
 
+character = SetCharacter(
+    "healer",
+    "female_1",
+    "hf01", 
+    4, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
+    0 //ARROW
+);
+CharacterPosition(9,12,character);
+    
 turn.sort(function (a, b) {
     if (a.agi > b.agi) {
       return -1;
@@ -173,38 +223,176 @@ turn.sort(function (a, b) {
     // a must be equal to b
     return 0;
 });
-
 SetTurnBatch();
 
 //Para inicializar informações e atributos do personagem
-function SetCharacter(name, sprite, pclass, hp, sp, atk, def, matk, mdef, dex, agi, step, range, mrange, arange, arrow){
+function SetCharacter(pclass, sex, id, sprite, hp, sp, atk, def, matk, mdef, dex, agi, step, range, mrange, arange, arrow){
     var character = new Array();
 
-    character['name'] = name;	
-    character['sprite'] = sprite; 
+    switch (pclass){
+        case "knight":
+            character['hp'] = hp + 200; 
+            character['maxhp'] = character['hp'];     
+            character['sp'] = sp + 20; 
+            character['maxsp'] = character['sp'];  
+
+            character['atk'] = atk + 35; 
+            character['def'] = def + 30; 
+            character['matk'] = matk + 0; 
+            character['mdef'] = mdef + 5; 
+            character['dex'] = dex + 10; 
+            character['agi'] = agi + 5; 
+        
+            character['step'] = step + 2; 
+            character['range'] = range + 1; 
+            character['mrange'] = mrange + 0; 
+            character['arange'] = arange + 2; 
+        
+            character['arrow'] = arrow + 2; 
+            break;
+
+        case "warrior":
+            character['hp'] = hp + 140; 
+            character['maxhp'] = character['hp'];     
+            character['sp'] = sp + 60; 
+            character['maxsp'] = character['sp'];  
+
+            character['atk'] = atk + 20; 
+            character['def'] = def + 20; 
+            character['matk'] = matk + 20; 
+            character['mdef'] = mdef + 20; 
+            character['dex'] = dex + 10; 
+            character['agi'] = agi + 8; 
+        
+            character['step'] = step + 2; 
+            character['range'] = range + 1; 
+            character['mrange'] = mrange + 2; 
+            character['arange'] = arange + 2; 
+        
+            character['arrow'] = arrow + 3; 
+            break;
+
+        case "mage":
+            character['hp'] = hp + 110; 
+            character['maxhp'] = character['hp'];     
+            character['sp'] = sp + 100; 
+            character['maxsp'] = character['sp'];  
+
+            character['atk'] = atk + 10; 
+            character['def'] = def + 10; 
+            character['matk'] = matk + 35; 
+            character['mdef'] = mdef + 35; 
+            character['dex'] = dex + 22; 
+            character['agi'] = agi + 2; 
+        
+            character['step'] = step + 1; 
+            character['range'] = range + 1; 
+            character['mrange'] = mrange + 2; 
+            character['arange'] = arange + 2; 
+        
+            character['arrow'] = arrow + 0; 
+            break;
+
+        case "wizzard":
+            character['hp'] = hp + 100; 
+            character['maxhp'] = character['hp'];     
+            character['sp'] = sp + 120; 
+            character['maxsp'] = character['sp'];  
+
+            character['atk'] = atk + 5; 
+            character['def'] = def + 5; 
+            character['matk'] = matk + 45; 
+            character['mdef'] = mdef + 40; 
+            character['dex'] = dex + 20; 
+            character['agi'] = agi + 1; 
+        
+            character['step'] = step + 1; 
+            character['range'] = range + 1; 
+            character['mrange'] = mrange + 2; 
+            character['arange'] = arange + 2; 
+        
+            character['arrow'] = arrow + 0; 
+            break;
+
+        case "archer":
+            character['hp'] = hp + 100; 
+            character['maxhp'] = character['hp'];     
+            character['sp'] = sp + 20; 
+            character['maxsp'] = character['sp'];  
+
+            character['atk'] = atk + 20; 
+            character['def'] = def + 10; 
+            character['matk'] = matk + 0; 
+            character['mdef'] = mdef + 10; 
+            character['dex'] = dex + 20; 
+            character['agi'] = agi + 10; 
+        
+            character['step'] = step + 1; 
+            character['range'] = range + 1; 
+            character['mrange'] = mrange + 0; 
+            character['arange'] = arange + 2; 
+        
+            character['arrow'] = arrow + 10; 
+            break;
+
+        case "healer":
+            character['hp'] = hp + 100; 
+            character['maxhp'] = character['hp'];     
+            character['sp'] = sp + 100; 
+            character['maxsp'] = character['sp'];  
+
+            character['atk'] = atk + 10; 
+            character['def'] = def + 10; 
+            character['matk'] = matk + 40; 
+            character['mdef'] = mdef + 50; 
+            character['dex'] = dex + 10; 
+            character['agi'] = agi + 5; 
+        
+            character['step'] = step + 1; 
+            character['range'] = range + 1; 
+            character['mrange'] = mrange + 2; 
+            character['arange'] = arange + 2; 
+        
+            character['arrow'] = arrow + 0; 
+            break;
+
+        default:
+            alert("Personagem sem classe definida");
+            return;
+    }
+
+    switch (sex){
+        case "female":
+        case "female_1": //Preciso alterar a variação de sprite
+        case "female_2":
+            character['sp'] = character['sp'] + 10; 
+            character['maxsp'] = character['sp'];  
+            character['matk'] = character['matk'] + 10; 
+            character['mdef'] = character['mdef'] + 5;
+            character['agi'] = character['agi'] + 2; 
+            break;
+        case "male":
+            character['hp'] = character['hp'] + 20; 
+            character['maxhp'] = character['hp'];     
+            character['atk'] = character['atk'] + 8; 
+            character['def'] = character['def'] + 5; 
+            character['dex'] = character['dex'] + 2; 
+            break;
+        default:
+            alert("Personagem sem sexo definido");
+            return;
+    }
+
+    character['id'] = id;	
     character['pclass'] = pclass; 
-
-    character['hp'] = hp; character['maxhp'] = hp;     
-    character['sp'] = sp; character['maxsp'] = sp;     
-    character['atk'] = atk; 
-    character['def'] = def; 
-    character['matk'] = matk; 
-    character['mdef'] = mdef; 
-    character['dex'] = dex; 
-    character['agi'] = agi; 
-
-    character['step'] = step; 
-    character['range'] = range; 
-    character['mrange'] = mrange; 
-    character['arange'] = arange; 
-
-    character['arrow'] = arrow; 
+    character['sex'] = sex; 
+    character['sprite'] = "src/character/"+character.pclass+"_"+character.sex+"_"+sprite+".png"; 
     
     character['height'] = 50; 
     character['width'] = 50; 
 
     character['turn'] = false;  
-    CharacterTurn(agi, name);  
+    AddToBatch(character.id,character.agi,character.pclass,character.sex);  
     return character;
 }
 
@@ -217,21 +405,25 @@ function CharacterPosition(x,y,character){
     elem.setAttribute("height", character['height']);
     elem.setAttribute("width", character['width']);
     document.getElementById("field_"+x+"-"+y).appendChild(elem);
+    document.getElementById("field_"+x+"-"+y).style.cursor="pointer";
 }
 
-function CharacterTurn(agi,name){ 
+function AddToBatch(id,agi,pclass,sex){ 
     turn[turn.length] = new Array();  
-    turn[turn.length-1]['name'] = name;  
+    turn[turn.length-1]['id'] = id;  
     turn[turn.length-1]['agi'] = agi;  
+    turn[turn.length-1]['pclass'] = pclass;  
+    turn[turn.length-1]['sex'] = sex;  
     turn[turn.length-1]['attack'] = true;
     turn[turn.length-1]['walk'] = true;    
 }
 
 function SetTurnBatch(){
+
     document.getElementById("turn").innerHTML="";
     for(i=0;i<=turn.length-1;i++){   
         var elem = document.createElement("img");
-        elem.setAttribute("src", "src/"+turn[i].name+"_1.png");
+        elem.setAttribute("src", "src/character/"+turn[i].pclass+"_"+turn[i].sex+"_1.png");
         elem.setAttribute("height", 50);
         elem.setAttribute("width", 50);
 
@@ -253,6 +445,27 @@ function SetTurnBatch(){
         }
         document.getElementById("turn").appendChild(elem);
     }
+}
+
+function RemoveFromBatch(id){
+    var temp_turn = new Array();
+    var pos = 0;
+    for(i=0;i<=turn.length-1;i++){
+        if(id != turn[i].id){
+            temp_turn[pos] = turn[i];
+            pos++;
+        }
+    }
+
+    turn = temp_turn;
+}
+
+function EndTurn(){
+    temp = turn[0];
+    for(i=0;i<=turn.length-1;i++){  
+        turn[i] = turn[i+1];
+    }
+    turn[turn.length-1] = temp;
 }
 
     
