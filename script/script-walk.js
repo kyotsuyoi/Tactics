@@ -84,19 +84,19 @@ function RedoMoveRange(){
 
 function side(x,y,pclass,sex){
     if(selected_y < y){
-        selected_field['sprite'] = "src/character/"+pclass+"_"+sex+"_2.png";
+        selected_field['sprite'] = src_path+"character/"+pclass+"_"+sex+"_2.png";
         return;
     }
     if(selected_y > y){
-        selected_field['sprite'] = "src/character/"+pclass+"_"+sex+"_4.png";
+        selected_field['sprite'] = src_path+"character/"+pclass+"_"+sex+"_4.png";
         return;
     }
     if(selected_x > x){
-        selected_field['sprite'] = "src/character/"+pclass+"_"+sex+"_3.png";
+        selected_field['sprite'] = src_path+"character/"+pclass+"_"+sex+"_3.png";
         return;
     }
     if(selected_x < x){
-        selected_field['sprite'] = "src/character/"+pclass+"_"+sex+"_1.png";
+        selected_field['sprite'] = src_path+"character/"+pclass+"_"+sex+"_1.png";
         return;
     }
 }

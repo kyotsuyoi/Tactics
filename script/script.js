@@ -1,3 +1,8 @@
+var src_path = "../src/";
+var ground = window.localStorage.getItem("ground");
+
+document.getElementById("field").style.backgroundImage =  "url("+src_path+"ground/ground0"+ ground + ".jpg)";
+
 var selected_field = undefined;
 var selected_x = 0;
 var selected_y = 0;
@@ -118,7 +123,7 @@ function ShowCharacterCard(){
     document.getElementById('action-select').style.display='inline';
     document.getElementById('block').style.display='inline';
 
-    document.getElementById("selected_char_img").src = "src/character/"+selected_field.pclass+"_"+selected_field.sex+"_1.png";
+    document.getElementById("selected_char_img").src = src_path+"character/"+selected_field.pclass+"_"+selected_field.sex+"_1.png";
     document.getElementById("selected_char_class").textContent = "Classe:" + selected_field['pclass'];
     document.getElementById("selected_char_hp").textContent = "HP:" + selected_field['hp'] + "/" + selected_field['maxhp'];
     document.getElementById("selected_char_sp").textContent = "SP:" + selected_field['sp'] + "/" + selected_field['maxsp'];

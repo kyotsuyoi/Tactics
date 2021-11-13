@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="pt-BR">
+
+    <head>       
+        <meta charset="utf-8"> 
+        <!-- <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" /> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="css/style-selected-character.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="css/style-attack.css" media="screen"/>
+        <title>Tactics</title>  
+    </head>
+
+    <body id="body">
+
+        <div id="block"></div>
+        <div id="action-select" class="select">            
+            <div id="action-select-buttons">
+
+                <label for="field">Escolha a arena:</label>
+
+                <select name="field" id="fd">
+                    <option value="1">Arena 1</option>
+                    <option value="2">Arena 2</option>
+                    <option value="3">Arena 3</option>
+                    <option value="4">Arena 4</option>
+                </select>
+
+                <!-- <div style="cursor:pointer;" onclick="document.location='html/game.html'">✔️</div> -->
+                <div style="cursor:pointer;" onclick="Selected()">✔️</div>
+            </div>   
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
+

@@ -386,7 +386,7 @@ function SetCharacter(pclass, sex, id, sprite, hp, sp, atk, def, matk, mdef, dex
     character['id'] = id;	
     character['pclass'] = pclass; 
     character['sex'] = sex; 
-    character['sprite'] = "src/character/"+character.pclass+"_"+character.sex+"_"+sprite+".png"; 
+    character['sprite'] = src_path+"character/"+character.pclass+"_"+character.sex+"_"+sprite+".png"; 
     
     character['height'] = 50; 
     character['width'] = 50; 
@@ -423,7 +423,7 @@ function SetTurnBatch(){
     document.getElementById("turn").innerHTML="";
     for(i=0;i<=turn.length-1;i++){   
         var elem = document.createElement("img");
-        elem.setAttribute("src", "src/character/"+turn[i].pclass+"_"+turn[i].sex+"_1.png");
+        elem.setAttribute("src", src_path+"character/"+turn[i].pclass+"_"+turn[i].sex+"_1.png");
         elem.setAttribute("height", 50);
         elem.setAttribute("width", 50);
 

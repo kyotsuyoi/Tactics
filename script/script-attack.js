@@ -190,7 +190,7 @@ function AttackTo(x,y){
                 
                 document.getElementById("field_"+x+"-"+y).innerHTML="";
                 var img = document.createElement("img");
-                img.setAttribute("src", "src/character/"+ field[x][y].pclass+"_"+field[x][y].sex +"_3.png");
+                img.setAttribute("src", src_path+"character/"+ field[x][y].pclass+"_"+field[x][y].sex +"_3.png");
                 document.getElementById("field_"+x+"-"+y).appendChild(img);
 
                 var rdn = Math.round(Math.random() * (2 - 1) + 1);
@@ -239,19 +239,19 @@ function RedoAttackRange(){
 
 function Side(x,y,pclass,sex){
     if(selected_y < y){ //Direita
-        selected_field['sprite'] = "src/character/"+pclass+"_"+sex+"_2.png";
+        selected_field['sprite'] = src_path+"character/"+pclass+"_"+sex+"_2.png";
         return 2;
     }
     if(selected_y > y){ //Esquerda
-        selected_field['sprite'] = "src/character/"+pclass+"_"+sex+"_4.png";
+        selected_field['sprite'] = src_path+"character/"+pclass+"_"+sex+"_4.png";
         return 4; 
     }
     if(selected_x > x){ //Cima
-        selected_field['sprite'] = "src/character/"+pclass+"_"+sex+"_3.png";
+        selected_field['sprite'] = src_path+"character/"+pclass+"_"+sex+"_3.png";
         return 3;
     }
     if(selected_x < x){ //Baixo
-        selected_field['sprite'] = "src/character/"+pclass+"_"+sex+"_1.png";
+        selected_field['sprite'] = src_path+"character/"+pclass+"_"+sex+"_1.png";
         return 1;
     }
 }
@@ -285,7 +285,7 @@ function AttackAnim(side){
         case 2: //Direita 
             weapon.setAttribute("class", "weapon_right");
             weapon.setAttribute("left", "-24");
-            weapon.setAttribute("src", "src/weapon/"+weapon_sprite+".png");
+            weapon.setAttribute("src", src_path+"weapon/"+weapon_sprite+".png");
             document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(weapon);
 
             document.getElementById("weapon").style.transform = "rotate(90deg)";
@@ -301,7 +301,7 @@ function AttackAnim(side){
 
         case 4: //Esquerda     
             weapon.setAttribute("class", "weapon_left");
-            weapon.setAttribute("src", "src/weapon/"+weapon_sprite+".png");  
+            weapon.setAttribute("src", src_path+"weapon/"+weapon_sprite+".png");  
             document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(weapon);
 
             setTimeout(function () {                
@@ -315,7 +315,7 @@ function AttackAnim(side){
 
         case 3:     
             weapon.setAttribute("class", "weapon_up");
-            weapon.setAttribute("src", "src/weapon/"+weapon_sprite+".png");  
+            weapon.setAttribute("src", src_path+"weapon/"+weapon_sprite+".png");  
             document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(weapon);
 
             setTimeout(function () {                
@@ -330,7 +330,7 @@ function AttackAnim(side){
 
         case 1:      
             weapon.setAttribute("class", "weapon_down");
-            weapon.setAttribute("src", "src/weapon/"+weapon_sprite+".png");  
+            weapon.setAttribute("src", src_path+"weapon/"+weapon_sprite+".png");  
             document.getElementById("field_"+selected_x+"-"+selected_y).appendChild(weapon);
             
             document.getElementById("weapon").style.transform = "rotate(-90deg)";  
