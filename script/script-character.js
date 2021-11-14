@@ -195,7 +195,7 @@ CharacterPosition(8,12,character);
 character = SetCharacter(
     "healer",
     "female_1",
-    "hf01", 
+    "hf02", 
     4, //INITIAL SPRITE
     0, //HP
     0, //SP
