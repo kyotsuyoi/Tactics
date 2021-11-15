@@ -114,10 +114,9 @@ function AttackTo(x,y){
         var side = Side(x,y,selected_field.pclass,selected_field.sex);
         AttackAnim(side);
         
-        if(Flee(x,y)) return;
-
         switch (attack_type){
-            case 1:
+            case 1:                
+                if(Flee(x,y)) return;
                 atk = selected_field['atk'];
                 def = field[x][y]['def'];
                 break;
@@ -137,7 +136,7 @@ function AttackTo(x,y){
                 }
                 selected_field['sp'] = selected_field['sp'] - 15;
                 break;
-            case 3:
+            case 3:                
                 atk = selected_field['atk'];
                 if(selected_field.pclass == "archer"){
                     atk = atk+selected_field['dex'];
@@ -155,6 +154,8 @@ function AttackTo(x,y){
                     }, 1000);
                     return false;
                 }
+                
+                if(Flee(x,y)) return;
                 selected_field['arrow'] = selected_field['arrow'] - 1;
                 break;
                 
@@ -164,7 +165,7 @@ function AttackTo(x,y){
 
         var round = Math.round(Math.random() * ((atk/2) - 1) + 1);
 
-        if(selected_field.pclass=="healer"){
+        if(selected_field.pclass=="healer"&& attack_type==2){
             r_atk = atk/2 + round;
 
             if(hp <= 0){
@@ -178,6 +179,28 @@ function AttackTo(x,y){
                 field[x][y]['hp'] = hp + r_atk;
             }
 
+        }else if(selected_field.pclass=="necro" && attack_type==2){
+            r_atk = atk/2 + round;
+
+            if(hp <= 0){
+                AddToBatch(
+                    field[x][y].id,
+                    field[x][y].agi,
+                    field[x][y].pclass,
+                    selected_field.p_id,
+                    field[x][y].sex
+                );
+                SetTurnBatch();
+
+                if((hp + r_atk) >= field[x][y]['maxhp']){
+                    field[x][y]['hp'] = field[x][y]['maxhp'];
+                }else{
+                    field[x][y]['hp'] = hp + r_atk;
+                }
+            }else{
+                r_atk = "E";
+            }            
+
         }else{
             r_atk = atk + round - def;  
             if(def > atk){
@@ -188,19 +211,9 @@ function AttackTo(x,y){
             if((hp - r_atk) <= 0){
                 field[x][y]['hp'] = 0;
                 
-                document.getElementById("field_"+x+"-"+y).innerHTML="";
-                var img = document.createElement("img");
-                img.setAttribute("src", src_path+"character/"+ field[x][y].pclass+"_"+field[x][y].sex +"_3.png");
-                document.getElementById("field_"+x+"-"+y).appendChild(img);
+                DeadAnim(x,y);
 
-                var rdn = Math.round(Math.random() * (2 - 1) + 1);
-                if(rdn == 1){                
-                    img.setAttribute("style", "transform:rotate(-90deg)");
-                }else{                
-                    img.setAttribute("style", "transform:rotate(90deg)");
-                }
-
-                RemoveFromBatch(field[x][y]['id']);                
+                RemoveFromBatch(field[x][y].id,field[x][y].p_id);                
                 SetTurnBatch();
 
             }else{
@@ -352,6 +365,20 @@ function AttackAnim(side){
     }, 400);
 }
 
+function DeadAnim(x,y){
+    document.getElementById("field_"+x+"-"+y).innerHTML="";
+    var img = document.createElement("img");
+    img.setAttribute("src", src_path+"character/"+ field[x][y].pclass+"_"+field[x][y].sex +"_3.png");
+    document.getElementById("field_"+x+"-"+y).appendChild(img);
+
+    var rdn = Math.round(Math.random() * (2 - 1) + 1);
+    if(rdn == 1){                
+        img.setAttribute("style", "transform:rotate(-90deg)");
+    }else{                
+        img.setAttribute("style", "transform:rotate(90deg)");
+    }
+}
+
 function DamageAnim(r_atk,x,y){
     var text = document.createElement("p");
     text.textContent = r_atk;        
@@ -359,12 +386,15 @@ function DamageAnim(r_atk,x,y){
     if(selected_field.pclass=="healer" && attack_type==2){
         text.setAttribute("style", "color:greenyellow");
     }
+    if(selected_field.pclass=="necro" && attack_type==2){
+        text.setAttribute("style", "color:darkviolet");
+    }
     document.getElementById("field_"+x+"-"+y).appendChild(text);     
     document.getElementById("weapon").style.zIndex = "10"; 
 
-    setTimeout(function () {
-        document.getElementById("field_"+x+"-"+y).removeChild(text);        
+    setTimeout(function () {   
         text.setAttribute("style", "color:red");      
+        document.getElementById("field_"+x+"-"+y).removeChild(text);     
     }, 1000); 
 }
 

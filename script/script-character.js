@@ -1,10 +1,33 @@
 var character;
 var turn = new Array();
 
+character = SetCharacter(
+    "warrior",
+    "male",
+    "wm01", 
+    "p1", 
+    2, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
+    0 //ARROW
+);
+CharacterPosition(7,5,character);
+
 character = SetCharacter(    
     "knight", 
     "female",
     "kf01", 
+    "p1", 
     2, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -26,6 +49,7 @@ character = SetCharacter(
     "wizzard",
     "female",
     "wif01", 
+    "p1", 
     2, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -44,9 +68,10 @@ character = SetCharacter(
 CharacterPosition(9,5,character);
 
 character = SetCharacter(
-    "warrior",
-    "male",
-    "wm01", 
+    "necro",
+    "male_1",
+    "nm01", 
+    "p1", 
     2, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -62,12 +87,13 @@ character = SetCharacter(
     0, //ARANGE
     0 //ARROW
 );
-CharacterPosition(7,5,character);
+CharacterPosition(7,4,character);
 
 character = SetCharacter(
     "archer",
     "female",
     "af0l", 
+    "p1", 
     2, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -89,6 +115,7 @@ character = SetCharacter(
     "healer",
     "female_2",
     "hf01", 
+    "p1", 
     2, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -106,12 +133,35 @@ character = SetCharacter(
 );
 CharacterPosition(9,4,character);
 
-//////////////////////////////////////////
+////////////////////////////////////////
+
+character = SetCharacter(
+    "knight",
+    "male",
+    "km01", 
+    "p2", 
+    4, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
+    0 //ARROW
+);  
+CharacterPosition(7,11,character);
 
 character = SetCharacter(
     "mage",
     "female",
     "mf01", 
+    "p2", 
     4, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -133,6 +183,7 @@ character = SetCharacter(
     "warrior",
     "female",
     "wf01", 
+    "p2", 
     4, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -151,9 +202,10 @@ character = SetCharacter(
 CharacterPosition(9,11,character);
 
 character = SetCharacter(
-    "knight",
-    "male",
-    "km01", 
+    "necro",
+    "male_2",
+    "nm02", 
+    "p2", 
     4, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -168,13 +220,14 @@ character = SetCharacter(
     0, //MRANGE
     0, //ARANGE
     0 //ARROW
-);  
-CharacterPosition(7,11,character);
+);
+CharacterPosition(7,12,character);
 
 character = SetCharacter(
     "archer",
     "male",
     "am01", 
+    "p2", 
     4, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -196,6 +249,7 @@ character = SetCharacter(
     "healer",
     "female_1",
     "hf02", 
+    "p2", 
     4, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -220,18 +274,18 @@ turn.sort(function (a, b) {
     if (a.agi < b.agi) {
       return 1;
     }
-    // a must be equal to b
     return 0;
 });
 SetTurnBatch();
+PointTurn();
 
 //Para inicializar informações e atributos do personagem
-function SetCharacter(pclass, sex, id, sprite, hp, sp, atk, def, matk, mdef, dex, agi, step, range, mrange, arange, arrow){
+function SetCharacter(pclass, sex, id, player_id, sprite, hp, sp, atk, def, matk, mdef, dex, agi, step, range, mrange, arange, arrow){
     var character = new Array();
 
     switch (pclass){
         case "knight":
-            character['hp'] = hp + 200; 
+            character['hp'] = hp + 200; //200
             character['maxhp'] = character['hp'];     
             character['sp'] = sp + 20; 
             character['maxsp'] = character['sp'];  
@@ -252,7 +306,7 @@ function SetCharacter(pclass, sex, id, sprite, hp, sp, atk, def, matk, mdef, dex
             break;
 
         case "warrior":
-            character['hp'] = hp + 140; 
+            character['hp'] = hp + 140; //140
             character['maxhp'] = character['hp'];     
             character['sp'] = sp + 60; 
             character['maxsp'] = character['sp'];  
@@ -393,6 +447,8 @@ function SetCharacter(pclass, sex, id, sprite, hp, sp, atk, def, matk, mdef, dex
             character['agi'] = character['agi'] + 2; 
             break;
         case "male":
+        case "male_1":
+        case "male_2":
             character['hp'] = character['hp'] + 20; 
             character['maxhp'] = character['hp'];     
             character['atk'] = character['atk'] + 8; 
@@ -405,6 +461,7 @@ function SetCharacter(pclass, sex, id, sprite, hp, sp, atk, def, matk, mdef, dex
     }
 
     character['id'] = id;	
+    character['p_id'] = player_id; //Player dono do personagem  
     character['pclass'] = pclass; 
     character['sex'] = sex; 
     character['sprite'] = src_path+"character/"+character.pclass+"_"+character.sex+"_"+sprite+".png"; 
@@ -413,7 +470,7 @@ function SetCharacter(pclass, sex, id, sprite, hp, sp, atk, def, matk, mdef, dex
     character['width'] = 50; 
 
     character['turn'] = false;  
-    AddToBatch(character.id,character.agi,character.pclass,character.sex);  
+    AddToBatch(character.id,character.agi,character.pclass,character.p_id,character.sex);  
     return character;
 }
 
@@ -427,16 +484,6 @@ function CharacterPosition(x,y,character){
     elem.setAttribute("width", character['width']);
     document.getElementById("field_"+x+"-"+y).appendChild(elem);
     document.getElementById("field_"+x+"-"+y).style.cursor="pointer";
-}
-
-function AddToBatch(id,agi,pclass,sex){ 
-    turn[turn.length] = new Array();  
-    turn[turn.length-1]['id'] = id;  
-    turn[turn.length-1]['agi'] = agi;  
-    turn[turn.length-1]['pclass'] = pclass;  
-    turn[turn.length-1]['sex'] = sex;  
-    turn[turn.length-1]['attack'] = true;
-    turn[turn.length-1]['walk'] = true;    
 }
 
 function SetTurnBatch(){
@@ -468,17 +515,52 @@ function SetTurnBatch(){
     }
 }
 
-function RemoveFromBatch(id){
+function AddToBatch(id, agi, pclass, cp_id, sex){ 
+    turn[turn.length] = new Array();  
+    turn[turn.length-1]['id'] = id;  
+    // turn[turn.length-1]['p_id'] = p_id;  //Player dono do personagem      
+    turn[turn.length-1]['cp_id'] = cp_id;  //Player controlando o personagem  
+    turn[turn.length-1]['agi'] = agi;  
+    turn[turn.length-1]['pclass'] = pclass;  
+    turn[turn.length-1]['sex'] = sex;  
+    turn[turn.length-1]['attack'] = true;
+    turn[turn.length-1]['walk'] = true;    
+}
+
+function RemoveFromBatch(id,p_id){
     var temp_turn = new Array();
     var pos = 0;
+    var count = 0;
     for(i=0;i<=turn.length-1;i++){
         if(id != turn[i].id){
             temp_turn[pos] = turn[i];
             pos++;
         }
+        turn[i].id
     }
 
     turn = temp_turn;
+
+    for(i=0;i<=turn.length-1;i++){
+        if(p_id == turn[i].cp_id){
+            count++;
+        }
+    }
+
+    if(count==0){
+        
+        document.getElementById('block').style.display='inline';        
+        var text = document.createElement("p");
+        if (p_id=="p1"){
+            text.textContent = "Jogador 2 venceu!";
+            text.setAttribute("style", "font-size: 90px; text-align: center; color: red;");
+        }else{
+            text.textContent = "Jogador 1 venceu!";
+            text.setAttribute("style", "font-size: 90px; text-align: center; color: blue;");
+        }
+        document.getElementById('block').appendChild(text);  
+    }
+
 }
 
 function EndTurn(){
@@ -487,6 +569,56 @@ function EndTurn(){
         turn[i] = turn[i+1];
     }
     turn[turn.length-1] = temp;
+
+    PointTurn();
+
+    // document.getElementById('block').style.display='inline';        
+    // var text = document.createElement("p");
+    // if (p_id=="p1"){
+    //     text.textContent = "Jogador 2 venceu!";
+    //     text.setAttribute("style", "font-size: 90px; text-align: center; color: red;");
+    // }else{
+    //     text.textContent = "Jogador 1 venceu!";
+    //     text.setAttribute("style", "font-size: 90px; text-align: center; color: blue;");
+    // }
+    // document.getElementById('block').appendChild(text); 
+}
+
+function PointTurn(){
+    var x, y;
+    for(x=1;x<=field.length-1;x++){ 
+        for(y=1;y<=field.length-1;y++){ 
+            if(field[x][y].character != false){
+                if(field[x][y].id == turn[0].id){
+                    document.getElementById('field_'+x+"-"+y).style.backgroundColor = "rgba(240, 236, 7, 0.7)";
+                    
+                    document.getElementById('block').style.display='inline';                     
+                           
+                    // var text = document.createElement("p");   
+                    if (turn[0].cp_id=="p1"){
+                        document.getElementById('p_turn').innerText = "Jogador 1";
+                        document.getElementById('p_turn').style = "font-size: 90px; text-align: center; color: blue";
+                        // text.textContent = "Jogador 1";
+                        // text.setAttribute("style", "font-size: 90px; text-align: center; color: red;");
+                    }else{
+                        document.getElementById('p_turn').innerText = "Jogador 2";
+                        document.getElementById('p_turn').style = "font-size: 90px; text-align: center; color: red";
+                        // text.textContent = "Jogador 2";
+                        // text.setAttribute("style", "font-size: 90px; text-align: center; color: blue;");
+                    }
+                    //document.getElementById('block').appendChild(text); 
+
+                    setTimeout(function () {                             
+                        document.getElementById('block').style.display='none';
+                        document.getElementById('p_turn').innerText = "";
+                    }, 1000);
+
+                    x=field.length;
+                    y=field.length;
+                }
+            }
+        }
+    }
 }
 
     

@@ -13,13 +13,16 @@
 
     <body id="body">
 
-        <div id="block"></div>
+        <div id="block">
+            <p id="p_turn"></p>
+        </div>
         <div id="action-select" class="select">
             <div>
                 <img id="selected_char_img">
             </div>
             <div>
                 -------------------------------------
+                <p id="selected_char_p_id" class="selected_char"></p>
                 <p id="selected_char_class" class="selected_char"></p>
                 <p id="selected_char_hp" class="selected_char"></p>
                 <p id="selected_char_sp" class="selected_char"></p>
@@ -48,8 +51,10 @@
             </div>   
         </div>
 
-        <div id="field"></div>
-        <div id="turn"></div>
+        <div>
+            <div id="field"></div>
+            <div id="turn"></div>
+        </div>
 
         <script src="../script/script-field.js"></script>
         <script src="../script/script.js"></script>

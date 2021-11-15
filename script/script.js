@@ -108,12 +108,6 @@ function Action(v_action){
         turn[0].walk = true;
         turn[0].attack = true;
 
-        // temp = turn[0];
-        // for(i=0;i<=turn.length-1;i++){  
-        //     turn[i] = turn[i+1];
-        // }
-        // turn[turn.length-1] = temp;
-
         EndTurn();
         SetTurnBatch();
     }  
@@ -125,6 +119,7 @@ function ShowCharacterCard(){
 
     document.getElementById("selected_char_img").src = src_path+"character/"+selected_field.pclass+"_"+selected_field.sex+"_1.png";
     document.getElementById("selected_char_class").textContent = "Classe:" + selected_field['pclass'];
+    document.getElementById("selected_char_p_id").textContent = "Player:" + selected_field['p_id'];
     document.getElementById("selected_char_hp").textContent = "HP:" + selected_field['hp'] + "/" + selected_field['maxhp'];
     document.getElementById("selected_char_sp").textContent = "SP:" + selected_field['sp'] + "/" + selected_field['maxsp'];
 
