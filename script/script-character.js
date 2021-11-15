@@ -285,16 +285,16 @@ function SetCharacter(pclass, sex, id, player_id, sprite, hp, sp, atk, def, matk
 
     switch (pclass){
         case "knight":
-            character['hp'] = hp + 200; //200
+            character['hp'] = hp + 220; //200
             character['maxhp'] = character['hp'];     
             character['sp'] = sp + 20; 
             character['maxsp'] = character['sp'];  
 
             character['atk'] = atk + 35; 
-            character['def'] = def + 30; 
+            character['def'] = def + 35; 
             character['matk'] = matk + 0; 
             character['mdef'] = mdef + 5; 
-            character['dex'] = dex + 12; 
+            character['dex'] = dex + 14; 
             character['agi'] = agi + 4; 
         
             character['step'] = step + 2; 
@@ -306,15 +306,15 @@ function SetCharacter(pclass, sex, id, player_id, sprite, hp, sp, atk, def, matk
             break;
 
         case "warrior":
-            character['hp'] = hp + 140; //140
+            character['hp'] = hp + 150; //140
             character['maxhp'] = character['hp'];     
-            character['sp'] = sp + 60; 
+            character['sp'] = sp + 70; 
             character['maxsp'] = character['sp'];  
 
-            character['atk'] = atk + 20; 
-            character['def'] = def + 20; 
-            character['matk'] = matk + 20; 
-            character['mdef'] = mdef + 20; 
+            character['atk'] = atk + 22; 
+            character['def'] = def + 22; 
+            character['matk'] = matk + 22; 
+            character['mdef'] = mdef + 22; 
             character['dex'] = dex + 10; 
             character['agi'] = agi + 8; 
         
