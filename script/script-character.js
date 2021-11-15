@@ -339,7 +339,7 @@ function SetCharacter(pclass, sex, id, player_id, sprite, hp, sp, atk, def, matk
             character['dex'] = dex + 22; 
             character['agi'] = agi + 2; 
         
-            character['step'] = step + 1; 
+            character['step'] = step + 2; 
             character['range'] = range + 1; 
             character['mrange'] = mrange + 2; 
             character['arange'] = arange + 2; 
@@ -360,7 +360,7 @@ function SetCharacter(pclass, sex, id, player_id, sprite, hp, sp, atk, def, matk
             character['dex'] = dex + 20; 
             character['agi'] = agi + 1; 
         
-            character['step'] = step + 1; 
+            character['step'] = step + 2; 
             character['range'] = range + 1; 
             character['mrange'] = mrange + 2; 
             character['arange'] = arange + 2; 
@@ -381,7 +381,7 @@ function SetCharacter(pclass, sex, id, player_id, sprite, hp, sp, atk, def, matk
             character['dex'] = dex + 20; 
             character['agi'] = agi + 10; 
         
-            character['step'] = step + 1; 
+            character['step'] = step + 2; 
             character['range'] = range + 1; 
             character['mrange'] = mrange + 0; 
             character['arange'] = arange + 2; 
@@ -402,7 +402,7 @@ function SetCharacter(pclass, sex, id, player_id, sprite, hp, sp, atk, def, matk
             character['dex'] = dex + 10; 
             character['agi'] = agi + 5; 
         
-            character['step'] = step + 1; 
+            character['step'] = step + 2; 
             character['range'] = range + 1; 
             character['mrange'] = mrange + 2; 
             character['arange'] = arange + 2; 
@@ -416,7 +416,7 @@ function SetCharacter(pclass, sex, id, player_id, sprite, hp, sp, atk, def, matk
             character['sp'] = sp + 80; 
             character['maxsp'] = character['sp'];  
 
-            character['atk'] = atk + 10; 
+            character['atk'] = atk + 20; 
             character['def'] = def + 10; 
             character['matk'] = matk + 20; 
             character['mdef'] = mdef + 10; 
@@ -571,17 +571,6 @@ function EndTurn(){
     turn[turn.length-1] = temp;
 
     PointTurn();
-
-    // document.getElementById('block').style.display='inline';        
-    // var text = document.createElement("p");
-    // if (p_id=="p1"){
-    //     text.textContent = "Jogador 2 venceu!";
-    //     text.setAttribute("style", "font-size: 90px; text-align: center; color: red;");
-    // }else{
-    //     text.textContent = "Jogador 1 venceu!";
-    //     text.setAttribute("style", "font-size: 90px; text-align: center; color: blue;");
-    // }
-    // document.getElementById('block').appendChild(text); 
 }
 
 function PointTurn(){
@@ -593,20 +582,14 @@ function PointTurn(){
                     document.getElementById('field_'+x+"-"+y).style.backgroundColor = "rgba(240, 236, 7, 0.7)";
                     
                     document.getElementById('block').style.display='inline';                     
-                           
-                    // var text = document.createElement("p");   
+                     
                     if (turn[0].cp_id=="p1"){
                         document.getElementById('p_turn').innerText = "Jogador 1";
                         document.getElementById('p_turn').style = "font-size: 90px; text-align: center; color: blue";
-                        // text.textContent = "Jogador 1";
-                        // text.setAttribute("style", "font-size: 90px; text-align: center; color: red;");
                     }else{
                         document.getElementById('p_turn').innerText = "Jogador 2";
                         document.getElementById('p_turn').style = "font-size: 90px; text-align: center; color: red";
-                        // text.textContent = "Jogador 2";
-                        // text.setAttribute("style", "font-size: 90px; text-align: center; color: blue;");
                     }
-                    //document.getElementById('block').appendChild(text); 
 
                     setTimeout(function () {                             
                         document.getElementById('block').style.display='none';

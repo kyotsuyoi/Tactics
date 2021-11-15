@@ -169,7 +169,12 @@ function AttackTo(x,y){
             r_atk = atk/2 + round;
 
             if(hp <= 0){
-                AddToBatch(field[x][y].id,field[x][y].agi,field[x][y].pclass,field[x][y].sex);
+                AddToBatch(field[x][y].id,
+                    field[x][y].agi,
+                    field[x][y].pclass,
+                    field[x][y].p_id,
+                    field[x][y].sex
+                );
                 SetTurnBatch();
             }
 
