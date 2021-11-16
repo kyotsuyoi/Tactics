@@ -25,7 +25,7 @@ CharacterPosition(7,5,character);
 
 character = SetCharacter(    
     "knight", 
-    "female",
+    "female_1",
     "kf01", 
     "p1", 
     2, //INITIAL SPRITE
