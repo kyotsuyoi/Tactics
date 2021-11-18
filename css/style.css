@@ -23,7 +23,11 @@
 } */
 
 #action-select{
+     border-radius: 10px;
+    border-width: thin;
     display:block;
+    background:linear-gradient(#0000, #fefefe);
+    box-shadow: 5px 5px 5px  #000;
 }
 
 #body{
