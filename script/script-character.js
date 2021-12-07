@@ -225,7 +225,7 @@ CharacterPosition(7,12,character);
 
 character = SetCharacter(
     "archer",
-    "male",
+    "male_2",
     "am01", 
     "p2", 
     4, //INITIAL SPRITE
@@ -266,6 +266,28 @@ character = SetCharacter(
     0 //ARROW
 );
 CharacterPosition(9,12,character);
+
+// character = SetCharacter(
+//     "wooden_target",
+//     "male",
+//     "wt", 
+//     "p2", 
+//     4, //INITIAL SPRITE
+//     -200, //HP
+//     0, //SP
+//     0, //ATK
+//     0, //DEF
+//     0, //MATK
+//     0, //MDEF
+//     0, //DEX
+//     0, //AGI
+//     0, //STEP
+//     0, //RANGE
+//     0, //MRANGE
+//     0, //ARANGE
+//     0 //ARROW
+// );
+// CharacterPosition(8,8,character);
     
 turn.sort(function (a, b) {
     if (a.agi > b.agi) {
@@ -378,7 +400,7 @@ function SetCharacter(pclass, sex, id, player_id, sprite, hp, sp, atk, def, matk
             character['def'] = def + 10; 
             character['matk'] = matk + 0; 
             character['mdef'] = mdef + 10; 
-            character['dex'] = dex + 20; 
+            character['dex'] = dex + 15; 
             character['agi'] = agi + 10; 
         
             character['step'] = step + 2; 
@@ -398,7 +420,7 @@ function SetCharacter(pclass, sex, id, player_id, sprite, hp, sp, atk, def, matk
             character['atk'] = atk + 10; 
             character['def'] = def + 10; 
             character['matk'] = matk + 40; 
-            character['mdef'] = mdef + 50; 
+            character['mdef'] = mdef + 45; 
             character['dex'] = dex + 10; 
             character['agi'] = agi + 5; 
         
@@ -426,6 +448,27 @@ function SetCharacter(pclass, sex, id, player_id, sprite, hp, sp, atk, def, matk
             character['step'] = step + 2; 
             character['range'] = range + 2; 
             character['mrange'] = mrange + 2; 
+            character['arange'] = arange + 0; 
+        
+            character['arrow'] = arrow + 0; 
+            break;
+
+        case "wooden_target":
+            character['hp'] = hp + 100000; 
+            character['maxhp'] = character['hp'];     
+            character['sp'] = sp + 0; 
+            character['maxsp'] = character['sp'];  
+
+            character['atk'] = atk + 0; 
+            character['def'] = def + 0; 
+            character['matk'] = matk + 0; 
+            character['mdef'] = mdef + 0; 
+            character['dex'] = dex + 0; 
+            character['agi'] = agi + 0; 
+        
+            character['step'] = step + 0; 
+            character['range'] = range + 0; 
+            character['mrange'] = mrange + 0; 
             character['arange'] = arange + 0; 
         
             character['arrow'] = arrow + 0; 
@@ -465,6 +508,10 @@ function SetCharacter(pclass, sex, id, player_id, sprite, hp, sp, atk, def, matk
     character['pclass'] = pclass; 
     character['sex'] = sex; 
     character['sprite'] = src_path+"character/"+character.pclass+"_"+character.sex+"_"+sprite+".png"; 
+
+    if (character.pclass=="wooden_target"){
+        character['sprite'] = src_path+"object/wooden_target.png"; 
+    }
     
     character['height'] = 50; 
     character['width'] = 50; 
@@ -516,6 +563,7 @@ function SetTurnBatch(){
 }
 
 function AddToBatch(id, agi, pclass, cp_id, sex){ 
+    if(pclass=="wooden_target") return;
     turn[turn.length] = new Array();  
     turn[turn.length-1]['id'] = id;  
     // turn[turn.length-1]['p_id'] = p_id;  //Player dono do personagem      
@@ -573,6 +621,7 @@ function EndTurn(){
     PointTurn();
 }
 
+//Apresenta o turno de cada jogador
 function PointTurn(){
     var x, y;
     for(x=1;x<=field.length-1;x++){ 

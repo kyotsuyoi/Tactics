@@ -409,7 +409,7 @@ function Flee(x, y){
     }
     var dex = selected_field['dex'];        
     var agi = field[x][y]['agi'];
-    var percent =  Math.round(Math.random() * ((100) - 0) + 0);
+    var percent = Math.round(Math.random() * ((100) - 0) + 0);
     var hit = (dex*100/agi)/2;        
     
     if(percent > hit){
