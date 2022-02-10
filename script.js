@@ -1,7 +1,12 @@
 function Selected(){
-    var select = document.getElementById('fd');
-    var ground = select.options[select.selectedIndex].value;
+    var selected_field = document.getElementById('fd');
+    var ground = selected_field.options[selected_field.selectedIndex].value;
+    
+    var selected_game_type = document.getElementById('fd');
+    var game_type = selected_game_type.options[selected_game_type.selectedIndex].value;
+
     window.localStorage.setItem("ground", ground);
+    window.localStorage.setItem("game_type", game_type);
     window.location.replace("html/game.html");
 }
 

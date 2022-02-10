@@ -155,8 +155,8 @@ function AttackTo(x,y){
                     return false;
                 }
                 
-                if(Flee(x,y)) return;
                 selected_field['arrow'] = selected_field['arrow'] - 1;
+                if(Flee(x,y)) return;
                 break;
                 
             default:

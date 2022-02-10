@@ -1,5 +1,6 @@
 var src_path = "../src/";
 var ground = window.localStorage.getItem("ground");
+var game_type = window.localStorage.getItem("game_type");
 
 document.getElementById("field").style.backgroundImage =  "url("+src_path+"ground/ground0"+ ground + ".jpg)";
 

@@ -636,7 +636,11 @@ function PointTurn(){
                         document.getElementById('p_turn').innerText = "Jogador 1";
                         document.getElementById('p_turn').style = "font-size: 90px; text-align: center; color: blue";
                     }else{
-                        document.getElementById('p_turn').innerText = "Jogador 2";
+                        if (game_type=="2"){                            
+                            document.getElementById('p_turn').innerText = "Computador";
+                        }else{                            
+                            document.getElementById('p_turn').innerText = "Jogador 2";
+                        }
                         document.getElementById('p_turn').style = "font-size: 90px; text-align: center; color: red";
                     }
 
