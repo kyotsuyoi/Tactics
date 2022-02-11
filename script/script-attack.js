@@ -1,4 +1,4 @@
-var count = 0;
+//var count = 0;
 var possible_attack = new Array;  
 var attack_range;
 var attack_type = 0;
@@ -74,32 +74,42 @@ function AttackRange(atk_type){
     }
 }
 
-function PossibleAttack(px,py){
-    if(px>0 && px < size+1 && py > 0 && py < size+1){
-        document.getElementById('field_'+(px)+'-'+(py)).src = null;
-        document.getElementById('field_'+px+'-'+py).style.cursor="pointer"; 
+function PossibleAttack(x,y){
+    count = 0
+    if(x>0 && x < size+1 && y > 0 && y < size+1){
+        document.getElementById('field_'+(x)+'-'+(y)).src = null;
+        document.getElementById('field_'+x+'-'+y).style.cursor="pointer"; 
         if(selected_field.pclass=="healer" && attack_type==2){
-            document.getElementById('field_'+(px)+'-'+(py)).style.backgroundColor = "rgba(12, 242, 12, 0.7)"; //muda cor de fundo para verde
+            document.getElementById('field_'+(x)+'-'+(y)).style.backgroundColor = "rgba(12, 242, 12, 0.7)"; //muda cor de fundo para verde
         }else{
-            document.getElementById('field_'+(px)+'-'+(py)).style.backgroundColor = "rgba(242, 12, 12, 0.7)"; //muda cor de fundo para vermelho
+            document.getElementById('field_'+(x)+'-'+(y)).style.backgroundColor = "rgba(242, 12, 12, 0.7)"; //muda cor de fundo para vermelho
         }
         // possible_attack[count] = "field_"+(px)+"-"+(py); 
-        possible_attack[count] = new Array; 
-        possible_attack[count]['x'] = px; 
-        possible_attack[count]['y'] = py; 
+
+        field_pos = new Array
+        field_pos['x'] = x
+        field_pos['y'] = y
+
+        possible_attack.push(field_pos)
         count++;
     }
 }
 
 function AttackTo(x,y){
-    var i;
-    var is_attack = false;
-    for(i=0;i<=possible_attack.length;i++){ 
-        if("field_"+possible_attack[i].x+"-"+possible_attack[i].y == "field_"+x+"-"+y){
-            is_attack=true;
-            i=possible_attack.length;
-        }
-    }
+    field_pos = new Array
+    field_pos['x'] = x
+    field_pos['y'] = y
+
+    is_attack = possible_attack.some(elemen => JSON.stringify(elemen) === JSON.stringify(field_pos));
+
+    // var i;
+    // var is_attack = false;
+    // for(i=0;i<=possible_attack.length;i++){ 
+    //     if("field_"+possible_attack[i].x+"-"+possible_attack[i].y == "field_"+x+"-"+y){
+    //         is_attack=true;
+    //         i=possible_attack.length;
+    //     }
+    // }
 
     if(is_attack){
         if(field[x][y]['id'] == undefined){            
@@ -242,16 +252,17 @@ function RedoAttackRange(){
 
     document.getElementById('field_'+selected_x+"-"+selected_y).style.backgroundColor = "";  
     for(i=0;i<possible_attack.length;i++){
-        document.getElementById('field_'+possible_attack[i].x+"-"+possible_attack[i].y).style.backgroundColor = "";
-        document.getElementById('field_'+possible_attack[i].x+"-"+possible_attack[i].y).style.opacity = "1";
+        field_string = "field_"+possible_attack[i].x+"-"+possible_attack[i].y 
+        document.getElementById(field_string).style.backgroundColor = "";
+        document.getElementById(field_string).style.opacity = "1";
 
         x=possible_attack[i].x; y=possible_attack[i].y;
         if(field[x][y]['character'] == false){      
-            document.getElementById('field_'+possible_attack[i].x+"-"+possible_attack[i].y).style.cursor="auto";
+            document.getElementById(field_string).style.cursor="auto";
         }
     }	
 
-    count = 0;
+    //count = 0;
     possible_attack = new Array;
 }
 

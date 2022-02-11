@@ -9,6 +9,7 @@ var selected_x = 0;
 var selected_y = 0;
 
 var size = 15;
+var com_pass = false
 
 document.getElementById('block').style.display='none';
 document.getElementById('action-select').style.display='none';
@@ -17,7 +18,7 @@ NewField(size); //script-field.js
 
 function Selected(x,y){
 
-    //if(turn[0].cp_id=="com1")return;
+    if(turn[0].cp_id=="com1" && !com_pass)return;
     
     if(selected_field == field[x][y]){
 

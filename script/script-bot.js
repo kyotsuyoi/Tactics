@@ -3,13 +3,67 @@ var bot_x, bot_y;
 var bot_step;
 
 function setBot(x,y){
+    com_pass = true;
     bot_x = x;
     bot_y = y;
     getEnemies();
     enemy = getClosestEnemy();    
     Selected(x,y);
 
-    findWalk(x,y,enemy);
+    findWalkTest(x,y,enemy);
+    //findWalk(x,y,enemy);
+    com_pass = false
+}
+
+function findWalkTest(x,y,enemy){
+    Action("walk"); 
+      
+    move_cancel = false;   
+    if (x == enemy.x){
+        if (Math.abs(y-enemy.y)<2){
+            move_cancel = true
+        }
+    }
+
+    if (y == enemy.y){
+        if (Math.abs(x-enemy.x)<2){
+            move_cancel = true
+        }
+    }
+
+    possible_move.forEach(element => {       
+        element['enemy_move_x'] = element.x - enemy.x;
+        element['enemy_move_y'] = element.y - enemy.y;
+        var total_move = Math.abs(element.enemy_move_x) + Math.abs(element.enemy_move_y);//converte o numero para positivo
+        element['total_move'] = total_move;
+    })
+
+    possible_move.sort(function (a, b) {
+        if (a.total_move > b.total_move) {
+          return 1;
+        }
+        if (a.total_move < b.total_move) {
+          return -1;
+        }
+        return 0;
+    });
+
+    if(!move_cancel){
+        if(!WalkTo(possible_move[0].x,possible_move[0].y)){
+            console.log(selected_field.id + " não pode mover para:" + possible_move[0].x + "-" + possible_move[0].y + " / distancias:" + possible_move[0].enemy_move_x + "-" + possible_move[0].enemy_move_y);
+        }
+    }    
+
+    action=undefined;
+    selected_x = x;
+    selected_y = y;
+    RedoMoveRange(); //script-step
+
+    enemies = new Array();
+    bot_x = 0;
+    bot_y = 0;
+
+    Action("end");
 }
 
 function findWalk(x,y,enemy){
@@ -24,7 +78,8 @@ function findWalk(x,y,enemy){
     enemy_move_x = Math.abs(enemy.move_x);
     enemy_move_y = Math.abs(enemy.move_y);
 
-    if(enemy_move_x <= enemy_move_y){              
+    //para diminuir a maior distancia (x ou y)
+    if(enemy_move_x >= enemy_move_y){              
         move_style = 1; 
         firstUpDown(enemy);
         move_cancel = secondLeftRight(enemy);
@@ -36,7 +91,7 @@ function findWalk(x,y,enemy){
 
     if (!move_cancel){
         if(!WalkTo(bot_move_x,bot_move_y)){
-            console.log("Nao pode mover para:" + bot_move_x + "-" + bot_move_y);
+            console.log(selected_field.id + " não pode mover para:" + bot_move_x + "-" + bot_move_y + " / distancias:" + enemy_move_x + "-" + enemy_move_y);
             bot_move_x = x; 
             bot_move_y = y;
             bot_step = selected_field.step;  
@@ -49,7 +104,7 @@ function findWalk(x,y,enemy){
             }
             if (!move_cancel){
                 if(!WalkTo(bot_move_x,bot_move_y)){
-                    console.log("Nao pode mover para:" + bot_move_x + "-" + bot_move_y);
+                    console.log(selected_field.id + " não pode mover para:" + bot_move_x + "-" + bot_move_y + " / distancias:" + enemy_move_x + "-" + enemy_move_y);
                 }
             }
         } 
@@ -65,7 +120,6 @@ function findWalk(x,y,enemy){
     bot_y = 0;
 
     Action("end");
-
 }
 
 function getEnemies(){
@@ -188,5 +242,9 @@ function secondUpDown(){
         }
     }
     return false;
+}
+
+function findAttack(){
+
 }
 

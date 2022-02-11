@@ -1,4 +1,3 @@
-var count = 0;
 var possible_move = new Array;
 
 function StepRange(){
@@ -23,25 +22,36 @@ function StepRange(){
     }
 }
 
-function PossibleMove(px,py){
-    if(px>0 && px < size+1 && py > 0 && py < size+1 && field[px][py]['id'] == undefined){
-        document.getElementById('field_'+px+'-'+py).src = null;
-        document.getElementById('field_'+px+'-'+py).style.cursor="pointer"; 
-        document.getElementById('field_'+px+'-'+py).style.backgroundColor = "rgba(13, 2, 173, 0.7)"; //muda cor de fundo
-        possible_move[count] = "field_"+px+"-"+py; 
+function PossibleMove(x,y){
+    count = 0
+    if(x>0 && x < size+1 && y > 0 && y < size+1 && field[x][y]['id'] == undefined){
+        document.getElementById('field_'+x+'-'+y).src = null;
+        document.getElementById('field_'+x+'-'+y).style.cursor="pointer"; 
+        document.getElementById('field_'+x+'-'+y).style.backgroundColor = "rgba(13, 2, 173, 0.7)"; //muda cor de fundo
+        //possible_move[count] = "field_"+x+"-"+y; 
+        field_pos = new Array
+        field_pos['x'] = x
+        field_pos['y'] = y
+
+        possible_move.push(field_pos)
         count++;
     }
 }
 
 function WalkTo(x,y){
-    var i;
-    var is_walk = false;
-    for(i=0;i<=possible_move.length;i++){ 
-        if(possible_move[i]=="field_"+x+"-"+y){
-            is_walk=true;
-            i=possible_move.length;
-        }
-    }
+    field_pos = new Array
+    field_pos['x'] = x
+    field_pos['y'] = y
+
+    is_walk = possible_move.some(elemen => JSON.stringify(elemen) === JSON.stringify(field_pos));
+
+    // var i;
+    // for(i=0;i<=possible_move.length;i++){ 
+    //     if(possible_move[i] == array){
+    //         is_walk=true;
+    //         i=possible_move.length;
+    //     }
+    // }
 
     if(is_walk){
         document.getElementById("field_"+selected_x+"-"+selected_y).innerHTML = ""; //Remove personagem da area anterior
@@ -68,17 +78,17 @@ function WalkTo(x,y){
 
 function RedoMoveRange(){
     var i;
-
-    for(i=0;i<possible_move.length;i++){
-        document.getElementById(possible_move[i]).style.backgroundColor = "";
-        document.getElementById(possible_move[i]).style.opacity = "1"; 
+    for(i=0;i<possible_move.length;i++){        
+        field_string = "field_"+possible_move[i].x+"-"+possible_move[i].y 
+        document.getElementById(field_string).style.backgroundColor = "";
+        document.getElementById(field_string).style.opacity = "1"; 
         
-        if(possible_move[i] != 'field_'+selected_x+"-"+selected_y){      
-            document.getElementById(possible_move[i]).style.cursor="auto";
+        if(field_string != 'field_'+selected_x+"-"+selected_y){      
+            document.getElementById(field_string).style.cursor="auto";
         }
     }	
 
-    count = 0;
+    //count = 0;
     possible_move = new Array;
 }
 
