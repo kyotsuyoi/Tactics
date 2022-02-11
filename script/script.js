@@ -16,6 +16,8 @@ document.getElementById('action-select').style.display='none';
 NewField(size); //script-field.js
 
 function Selected(x,y){
+
+    //if(turn[0].cp_id=="com1")return;
     
     if(selected_field == field[x][y]){
 

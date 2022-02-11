@@ -1,6 +1,8 @@
 var character;
 var turn = new Array();
 
+//////////////////PLAYER 1//////////////////////
+
 character = SetCharacter(
     "warrior",
     "male",
@@ -23,123 +25,128 @@ character = SetCharacter(
 );
 CharacterPosition(7,5,character);
 
-character = SetCharacter(    
-    "knight", 
-    "female_1",
-    "kf01", 
-    "p1", 
-    2, //INITIAL SPRITE
-    0, //HP
-    0, //SP
-    0, //ATK
-    0, //DEF
-    0, //MATK
-    0, //MDEF
-    0, //DEX
-    0, //AGI
-    0, //STEP
-    0, //RANGE
-    0, //MRANGE
-    0, //ARANGE
-    0 //ARROW
-);
-CharacterPosition(8,5,character);
+// character = SetCharacter(    
+//     "knight", 
+//     "female_1",
+//     "kf01", 
+//     "p1", 
+//     2, //INITIAL SPRITE
+//     0, //HP
+//     0, //SP
+//     0, //ATK
+//     0, //DEF
+//     0, //MATK
+//     0, //MDEF
+//     0, //DEX
+//     0, //AGI
+//     0, //STEP
+//     0, //RANGE
+//     0, //MRANGE
+//     0, //ARANGE
+//     0 //ARROW
+// );
+// CharacterPosition(8,5,character);
 
-character = SetCharacter(
-    "wizzard",
-    "female",
-    "wif01", 
-    "p1", 
-    2, //INITIAL SPRITE
-    0, //HP
-    0, //SP
-    0, //ATK
-    0, //DEF
-    0, //MATK
-    0, //MDEF
-    0, //DEX
-    0, //AGI
-    0, //STEP
-    0, //RANGE
-    0, //MRANGE
-    0, //ARANGE
-    0 //ARROW
-);
-CharacterPosition(9,5,character);
+// character = SetCharacter(
+//     "wizzard",
+//     "female",
+//     "wif01", 
+//     "p1", 
+//     2, //INITIAL SPRITE
+//     0, //HP
+//     0, //SP
+//     0, //ATK
+//     0, //DEF
+//     0, //MATK
+//     0, //MDEF
+//     0, //DEX
+//     0, //AGI
+//     0, //STEP
+//     0, //RANGE
+//     0, //MRANGE
+//     0, //ARANGE
+//     0 //ARROW
+// );
+// CharacterPosition(9,5,character);
 
-character = SetCharacter(
-    "necro",
-    "male_1",
-    "nm01", 
-    "p1", 
-    2, //INITIAL SPRITE
-    0, //HP
-    0, //SP
-    0, //ATK
-    0, //DEF
-    0, //MATK
-    0, //MDEF
-    0, //DEX
-    0, //AGI
-    0, //STEP
-    0, //RANGE
-    0, //MRANGE
-    0, //ARANGE
-    0 //ARROW
-);
-CharacterPosition(7,4,character);
+// character = SetCharacter(
+//     "necro",
+//     "male_1",
+//     "nm01", 
+//     "p1", 
+//     2, //INITIAL SPRITE
+//     0, //HP
+//     0, //SP
+//     0, //ATK
+//     0, //DEF
+//     0, //MATK
+//     0, //MDEF
+//     0, //DEX
+//     0, //AGI
+//     0, //STEP
+//     0, //RANGE
+//     0, //MRANGE
+//     0, //ARANGE
+//     0 //ARROW
+// );
+// CharacterPosition(7,4,character);
 
-character = SetCharacter(
-    "archer",
-    "female",
-    "af0l", 
-    "p1", 
-    2, //INITIAL SPRITE
-    0, //HP
-    0, //SP
-    0, //ATK
-    0, //DEF
-    0, //MATK
-    0, //MDEF
-    0, //DEX
-    0, //AGI
-    0, //STEP
-    0, //RANGE
-    0, //MRANGE
-    0, //ARANGE
-    0 //ARROW
-);
-CharacterPosition(8,4,character);
+// character = SetCharacter(
+//     "archer",
+//     "female",
+//     "af0l", 
+//     "p1", 
+//     2, //INITIAL SPRITE
+//     0, //HP
+//     0, //SP
+//     0, //ATK
+//     0, //DEF
+//     0, //MATK
+//     0, //MDEF
+//     0, //DEX
+//     0, //AGI
+//     0, //STEP
+//     0, //RANGE
+//     0, //MRANGE
+//     0, //ARANGE
+//     0 //ARROW
+// );
+// CharacterPosition(8,4,character);
 
-character = SetCharacter(
-    "healer",
-    "female_2",
-    "hf01", 
-    "p1", 
-    2, //INITIAL SPRITE
-    0, //HP
-    0, //SP
-    0, //ATK
-    0, //DEF
-    0, //MATK
-    0, //MDEF
-    0, //DEX
-    0, //AGI
-    0, //STEP
-    0, //RANGE
-    0, //MRANGE
-    0, //ARANGE
-    0 //ARROW
-);
-CharacterPosition(9,4,character);
+// character = SetCharacter(
+//     "healer",
+//     "female_2",
+//     "hf01", 
+//     "p1", 
+//     2, //INITIAL SPRITE
+//     0, //HP
+//     0, //SP
+//     0, //ATK
+//     0, //DEF
+//     0, //MATK
+//     0, //MDEF
+//     0, //DEX
+//     0, //AGI
+//     0, //STEP
+//     0, //RANGE
+//     0, //MRANGE
+//     0, //ARANGE
+//     0 //ARROW
+// );
+// CharacterPosition(9,4,character);
 
-////////////////////////////////////////
+//////////////////PLAYER 2//////////////////////
+
+var cp_id = "p2";
+if (game_type=="2"){ 
+    cp_id = "com1"
+}
 
 character = SetCharacter(
     "knight",
     "male",
     "km01", 
-    "p2", 
+    cp_id, 
     4, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -161,7 +168,7 @@ character = SetCharacter(
     "mage",
     "female",
     "mf01", 
-    "p2", 
+    cp_id, 
     4, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -183,7 +190,7 @@ character = SetCharacter(
     "warrior",
     "female",
     "wf01", 
-    "p2", 
+    cp_id, 
     4, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -205,7 +212,7 @@ character = SetCharacter(
     "necro",
     "male_2",
     "nm02", 
-    "p2", 
+    cp_id, 
     4, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -227,7 +234,7 @@ character = SetCharacter(
     "archer",
     "male_2",
     "am01", 
-    "p2", 
+    cp_id, 
     4, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -249,7 +256,7 @@ character = SetCharacter(
     "healer",
     "female_1",
     "hf02", 
-    "p2", 
+    cp_id, 
     4, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -637,7 +644,9 @@ function PointTurn(){
                         document.getElementById('p_turn').style = "font-size: 90px; text-align: center; color: blue";
                     }else{
                         if (game_type=="2"){                            
-                            document.getElementById('p_turn').innerText = "Computador";
+                            document.getElementById('p_turn').innerText = "Computador";                             
+                            //setBot(x,y);
+                            callSetTimeout(x,y)
                         }else{                            
                             document.getElementById('p_turn').innerText = "Jogador 2";
                         }
@@ -655,6 +664,12 @@ function PointTurn(){
             }
         }
     }
+}
+
+function callSetTimeout(x,y){
+    setTimeout(function(){                                
+        setBot(x,y);
+    },2000);
 }
 
     

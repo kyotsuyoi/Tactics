@@ -2,7 +2,7 @@ function Selected(){
     var selected_field = document.getElementById('fd');
     var ground = selected_field.options[selected_field.selectedIndex].value;
     
-    var selected_game_type = document.getElementById('fd');
+    var selected_game_type = document.getElementById('gt');
     var game_type = selected_game_type.options[selected_game_type.selectedIndex].value;
 
     window.localStorage.setItem("ground", ground);
