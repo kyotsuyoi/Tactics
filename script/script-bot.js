@@ -176,13 +176,14 @@ function walkAway(enemy){
 
 function getEnemies(){
     var x, y; 
+    enemies = new Array;
 
     for(x=1;x<=field.length-1;x++){ 
         for(y=1;y<=field.length-1;y++){ 
             if(field[x][y].character != false){
                 //if(field[x][y].p_id != undefined && field[x][y].p_id != turn[0].cp_id){
-                cpid = getControlPlayerIDFromBatch(field[x][y].id)
-                if(cpid != cp_id){
+                cpid = getControlPlayerIDFromBatch(field[x][y].id);
+                if(cpid != cp_id && cpid != undefined){
                     var enemy = field[x][y];
                     enemy['x'] = x;
                     enemy['y'] = y;
@@ -213,12 +214,13 @@ function getClosestEnemy(){
 
 function getAllies(){
     var x, y; 
+    allies = new Array;
 
     for(x=1;x<=field.length-1;x++){ 
         for(y=1;y<=field.length-1;y++){ 
             if(field[x][y].character != false){
                 //if(field[x][y].p_id != undefined && field[x][y].p_id == turn[0].cp_id && field[x][y].id != selected_field.id){
-                cpid = getControlPlayerIDFromBatch(field[x][y].id)
+                cpid = getControlPlayerIDFromBatch(field[x][y].id);
                 if(cpid == undefined){
                     cpid = field[x][y].p_id;
                 }
