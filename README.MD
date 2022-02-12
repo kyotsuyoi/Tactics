@@ -23,3 +23,14 @@
 
 # Dano fisico é médio
 ![](readme_files/damage01.png)
+
+# Ajustes
+Healer deve poder curar a si mesma
+
+# Problemas do bot
+Ataques de flecha não são concluidos quando o personagem está ao lado do inimigo
+Negromante não usa magia ainda
+Necromante não prioriza ataque fisico de longo alcance
+O bot não prioriza ataques de flecha o mais longe possível do alvo
+O bot não prioriza ataques magicos o mais longe possível do alvo
+Ao click na tela antes do bot terminar seu turno ele acaba travando

@@ -623,6 +623,14 @@ function RemoveFromBatch(id,p_id){
 
 }
 
+function getControlPlayerIDFromBatch(id){
+    for(i=0;i<=turn.length-1;i++){  
+        if(id == turn[i].id){
+            return turn[i].cp_id;
+        }
+    }
+}
+
 function EndTurn(){
     temp = turn[0];
     for(i=0;i<=turn.length-1;i++){  

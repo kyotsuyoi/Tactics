@@ -180,8 +180,9 @@ function getEnemies(){
     for(x=1;x<=field.length-1;x++){ 
         for(y=1;y<=field.length-1;y++){ 
             if(field[x][y].character != false){
-                if(field[x][y].p_id != undefined && field[x][y].p_id != turn[0].cp_id){
-
+                //if(field[x][y].p_id != undefined && field[x][y].p_id != turn[0].cp_id){
+                cpid = getControlPlayerIDFromBatch(field[x][y].id)
+                if(cpid != cp_id){
                     var enemy = field[x][y];
                     enemy['x'] = x;
                     enemy['y'] = y;
@@ -216,8 +217,12 @@ function getAllies(){
     for(x=1;x<=field.length-1;x++){ 
         for(y=1;y<=field.length-1;y++){ 
             if(field[x][y].character != false){
-                if(field[x][y].p_id != undefined && field[x][y].p_id == turn[0].cp_id && field[x][y].id != selected_field.id){
-
+                //if(field[x][y].p_id != undefined && field[x][y].p_id == turn[0].cp_id && field[x][y].id != selected_field.id){
+                cpid = getControlPlayerIDFromBatch(field[x][y].id)
+                if(cpid == undefined){
+                    cpid = field[x][y].p_id;
+                }
+                if(cpid == cp_id){
                     var ally = field[x][y];
                     ally['x'] = x;
                     ally['y'] = y;
