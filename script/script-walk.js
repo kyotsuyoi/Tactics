@@ -39,19 +39,19 @@ function PossibleMove(x,y){
 }
 
 function WalkTo(x,y){
-    field_pos = new Array
-    field_pos['x'] = x
-    field_pos['y'] = y
+    // field_pos = new Array
+    // field_pos['x'] = x
+    // field_pos['y'] = y
+    // is_walk = possible_move.some(elemen => JSON.stringify(elemen) === JSON.stringify(field_pos));
 
-    is_walk = possible_move.some(elemen => JSON.stringify(elemen) === JSON.stringify(field_pos));
-
-    // var i;
-    // for(i=0;i<=possible_move.length;i++){ 
-    //     if(possible_move[i] == array){
-    //         is_walk=true;
-    //         i=possible_move.length;
-    //     }
-    // }
+    var i;
+    var is_walk = false;
+    for(i=0;i<=possible_move.length;i++){ 
+        if(possible_move[i].x == x && possible_move[i].y == y){
+            is_walk=true;
+            i=possible_move.length;
+        }
+    }
 
     if(is_walk){
         document.getElementById("field_"+selected_x+"-"+selected_y).innerHTML = ""; //Remove personagem da area anterior

@@ -25,115 +25,115 @@ character = SetCharacter(
 );
 CharacterPosition(7,5,character);
 
-// character = SetCharacter(    
-//     "knight", 
-//     "female_1",
-//     "kf01", 
-//     "p1", 
-//     2, //INITIAL SPRITE
-//     0, //HP
-//     0, //SP
-//     0, //ATK
-//     0, //DEF
-//     0, //MATK
-//     0, //MDEF
-//     0, //DEX
-//     0, //AGI
-//     0, //STEP
-//     0, //RANGE
-//     0, //MRANGE
-//     0, //ARANGE
-//     0 //ARROW
-// );
-// CharacterPosition(8,5,character);
+character = SetCharacter(    
+    "knight", 
+    "female_1",
+    "kf01", 
+    "p1", 
+    2, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
+    0 //ARROW
+);
+CharacterPosition(8,5,character);
 
-// character = SetCharacter(
-//     "wizzard",
-//     "female",
-//     "wif01", 
-//     "p1", 
-//     2, //INITIAL SPRITE
-//     0, //HP
-//     0, //SP
-//     0, //ATK
-//     0, //DEF
-//     0, //MATK
-//     0, //MDEF
-//     0, //DEX
-//     0, //AGI
-//     0, //STEP
-//     0, //RANGE
-//     0, //MRANGE
-//     0, //ARANGE
-//     0 //ARROW
-// );
-// CharacterPosition(9,5,character);
+character = SetCharacter(
+    "wizzard",
+    "female",
+    "wif01", 
+    "p1", 
+    2, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
+    0 //ARROW
+);
+CharacterPosition(9,5,character);
 
-// character = SetCharacter(
-//     "necro",
-//     "male_1",
-//     "nm01", 
-//     "p1", 
-//     2, //INITIAL SPRITE
-//     0, //HP
-//     0, //SP
-//     0, //ATK
-//     0, //DEF
-//     0, //MATK
-//     0, //MDEF
-//     0, //DEX
-//     0, //AGI
-//     0, //STEP
-//     0, //RANGE
-//     0, //MRANGE
-//     0, //ARANGE
-//     0 //ARROW
-// );
-// CharacterPosition(7,4,character);
+character = SetCharacter(
+    "necro",
+    "male_1",
+    "nm01", 
+    "p1", 
+    2, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
+    0 //ARROW
+);
+CharacterPosition(7,4,character);
 
-// character = SetCharacter(
-//     "archer",
-//     "female",
-//     "af0l", 
-//     "p1", 
-//     2, //INITIAL SPRITE
-//     0, //HP
-//     0, //SP
-//     0, //ATK
-//     0, //DEF
-//     0, //MATK
-//     0, //MDEF
-//     0, //DEX
-//     0, //AGI
-//     0, //STEP
-//     0, //RANGE
-//     0, //MRANGE
-//     0, //ARANGE
-//     0 //ARROW
-// );
-// CharacterPosition(8,4,character);
+character = SetCharacter(
+    "archer",
+    "female",
+    "af0l", 
+    "p1", 
+    2, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
+    0 //ARROW
+);
+CharacterPosition(8,4,character);
 
-// character = SetCharacter(
-//     "healer",
-//     "female_2",
-//     "hf01", 
-//     "p1", 
-//     2, //INITIAL SPRITE
-//     0, //HP
-//     0, //SP
-//     0, //ATK
-//     0, //DEF
-//     0, //MATK
-//     0, //MDEF
-//     0, //DEX
-//     0, //AGI
-//     0, //STEP
-//     0, //RANGE
-//     0, //MRANGE
-//     0, //ARANGE
-//     0 //ARROW
-// );
-// CharacterPosition(9,4,character);
+character = SetCharacter(
+    "healer",
+    "female_2",
+    "hf01", 
+    "p1", 
+    2, //INITIAL SPRITE
+    0, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
+    0 //ARROW
+);
+CharacterPosition(9,4,character);
 
 //////////////////PLAYER 2//////////////////////
 
@@ -357,7 +357,7 @@ function SetCharacter(pclass, sex, id, player_id, sprite, hp, sp, atk, def, matk
 
         case "mage":
             character['hp'] = hp + 110; 
-            character['maxhp'] = character['hp'];     
+            character['maxhp'] = character['hp'];  
             character['sp'] = sp + 100; 
             character['maxsp'] = character['sp'];  
 
@@ -607,13 +607,18 @@ function RemoveFromBatch(id,p_id){
         document.getElementById('block').style.display='inline';        
         var text = document.createElement("p");
         if (p_id=="p1"){
-            text.textContent = "Jogador 2 venceu!";
+            if (game_type=="2"){                            
+                text.textContent = "Computador venceu!";
+            }else{
+                text.textContent = "Jogador 2 venceu!";
+            }
             text.setAttribute("style", "font-size: 90px; text-align: center; color: red;");
         }else{
             text.textContent = "Jogador 1 venceu!";
             text.setAttribute("style", "font-size: 90px; text-align: center; color: blue;");
         }
-        document.getElementById('block').appendChild(text);  
+        document.getElementById('block').appendChild(text); 
+        end_game = true 
     }
 
 }
@@ -629,7 +634,8 @@ function EndTurn(){
 }
 
 //Apresenta o turno de cada jogador
-function PointTurn(){
+function PointTurn(){                         
+    if(end_game)return  
     var x, y;
     for(x=1;x<=field.length-1;x++){ 
         for(y=1;y<=field.length-1;y++){ 

@@ -96,20 +96,19 @@ function PossibleAttack(x,y){
 }
 
 function AttackTo(x,y){
-    field_pos = new Array
-    field_pos['x'] = x
-    field_pos['y'] = y
+    // field_pos = new Array
+    // field_pos['x'] = x
+    // field_pos['y'] = y
+    //is_attack = possible_attack.some(elemen => JSON.stringify(elemen) === JSON.stringify(field_pos));
 
-    is_attack = possible_attack.some(elemen => JSON.stringify(elemen) === JSON.stringify(field_pos));
-
-    // var i;
-    // var is_attack = false;
-    // for(i=0;i<=possible_attack.length;i++){ 
-    //     if("field_"+possible_attack[i].x+"-"+possible_attack[i].y == "field_"+x+"-"+y){
-    //         is_attack=true;
-    //         i=possible_attack.length;
-    //     }
-    // }
+    var i;
+    var is_attack = false;
+    for(i=0;i<=possible_attack.length;i++){ 
+        if(possible_attack[i].x == x && possible_attack[i].y == y){
+            is_attack=true;
+            i=possible_attack.length;
+        }
+    }
 
     if(is_attack){
         if(field[x][y]['id'] == undefined){            
@@ -126,7 +125,7 @@ function AttackTo(x,y){
         
         switch (attack_type){
             case 1:                
-                if(Flee(x,y)) return;
+                if(Flee(x,y)) return true;
                 atk = selected_field['atk'];
                 def = field[x][y]['def'];
                 break;
@@ -166,7 +165,7 @@ function AttackTo(x,y){
                 }
                 
                 selected_field['arrow'] = selected_field['arrow'] - 1;
-                if(Flee(x,y)) return;
+                if(Flee(x,y)) return true;
                 break;
                 
             default:

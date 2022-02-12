@@ -1,6 +1,7 @@
 var src_path = "../src/";
 var ground = window.localStorage.getItem("ground");
 var game_type = window.localStorage.getItem("game_type");
+var end_game = false
 
 document.getElementById("field").style.backgroundImage =  "url("+src_path+"ground/ground0"+ ground + ".jpg)";
 
@@ -18,6 +19,7 @@ NewField(size); //script-field.js
 
 function Selected(x,y){
 
+    if(end_game)return
     if(turn[0].cp_id=="com1" && !com_pass)return;
     
     if(selected_field == field[x][y]){
