@@ -31,7 +31,7 @@ function setBot(x,y){
     //     attacked = false
     // }, 2000);
       
-    findAttack(enemy);    
+    tryAttack(enemy);    
     if(attacked){
         setTimeout(function () {   
             tryAgain();
@@ -47,7 +47,7 @@ function tryAgain(){
     }else{
         tryWalk(enemy);
         Selected(bot_x,bot_y); 
-        findAttack(enemy);
+        tryAttack(enemy);
     }
 
     if(attacked){
@@ -72,16 +72,36 @@ function endBotTurn(){
 
 function tryWalk(enemy){
     Action("walk"); 
+
+    // if (selected_field.sp > 15 && (selected_field.pclass == "mage" || selected_field.pclass == "wizzard")){
+    //     Action("magic"); 
+    // }else
+    if(selected_field.sp > 15 && selected_field.pclass == "healer"){    
+        // getAllies();
+        // ally = getAllyLessHP();
+        if(ally.hp < ally.maxhp/2){
+            enemy = ally;
+        }else{
+            getEnemies();
+            enemy = getClosestEnemy();
+        }
+    }
+    //else
+    // if(selected_field.arrow > 0){
+    //     Action("arrow"); 
+    // }else{        
+    //     Action("attack"); 
+    // }
       
-    move_cancel = false;   
+    close_enemy = false;   
     if (bot_x == enemy.x){
         if (Math.abs(bot_y-enemy.y)<2){
-            move_cancel = true
+            close_enemy = true
         }
     }
     if (bot_y == enemy.y){
         if (Math.abs(bot_x-enemy.x)<2){
-            move_cancel = true
+            close_enemy = true
         }
     }
 
@@ -102,6 +122,16 @@ function tryWalk(enemy){
         return 0;
     });
 
+    possible_move.sort(function (a, b) {
+        if (a.hp > b.hp) {
+          return 1;
+        }
+        if (a.hp < b.hp) {
+          return -1;
+        }
+        return 0;
+    });
+
     function getVal(value) {
         return value.total_move == possible_move[0].total_move;
     }    
@@ -112,7 +142,7 @@ function tryWalk(enemy){
     selected_move_x = possible_move[random_index].x
     selected_move_y = possible_move[random_index].y
 
-    if(!move_cancel){
+    if(!close_enemy){
         if(!WalkTo(possible_move[random_index].x,possible_move[random_index].y)){
             console.log(selected_field.id + " não pode mover para:" + possible_move[random_index].x + "-" + possible_move[random_index].y + " / distancias:" + possible_move[random_index].enemy_move_x + "-" + possible_move[random_index].enemy_move_y);
         }
@@ -123,7 +153,11 @@ function tryWalk(enemy){
         bot_y = selected_move_y
 
         walked = true
-    }    
+    } else {
+        if(!attacked){
+            walkAway(enemy);
+        }
+    }   
 
     action = undefined;
     RedoMoveRange(); //script-step
@@ -253,7 +287,7 @@ function getAllyLessHP(){
     return allies[allies.length-1];
 }
 
-function findAttack(enemy){
+function tryAttack(enemy){
     if (selected_field.sp > 15 && (selected_field.pclass == "mage" || selected_field.pclass == "wizzard")){
         Action("magic"); 
     }else

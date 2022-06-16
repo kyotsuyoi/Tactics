@@ -126,6 +126,7 @@ function ShowCharacterCard(){
     document.getElementById("selected_char_img").src = src_path+"character/"+selected_field.pclass+"_"+selected_field.sex+"_1.png";
     document.getElementById("selected_char_class").textContent = "Classe:" + selected_field['pclass'];
     document.getElementById("selected_char_p_id").textContent = "Player:" + selected_field['p_id'];
+    document.getElementById("selected_char_cp_id").textContent = "Control:" + selected_field['cp_id'];
     document.getElementById("selected_char_hp").textContent = "HP:" + selected_field['hp'] + "/" + selected_field['maxhp'];
     document.getElementById("selected_char_sp").textContent = "SP:" + selected_field['sp'] + "/" + selected_field['maxsp'];
 

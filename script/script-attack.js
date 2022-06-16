@@ -201,7 +201,7 @@ function AttackTo(x,y){
                     field[x][y].id,
                     field[x][y].agi,
                     field[x][y].pclass,
-                    selected_field.p_id,
+                    selected_field.cp_id,
                     field[x][y].sex
                 );
                 SetTurnBatch();

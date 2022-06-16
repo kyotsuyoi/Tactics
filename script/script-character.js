@@ -8,6 +8,7 @@ character = SetCharacter(
     "male",
     "wm01", 
     "p1", 
+    "p1", 
     2, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -29,6 +30,7 @@ character = SetCharacter(
     "knight", 
     "female_1",
     "kf01", 
+    "p1", 
     "p1", 
     2, //INITIAL SPRITE
     0, //HP
@@ -52,6 +54,7 @@ character = SetCharacter(
     "female",
     "wif01", 
     "p1", 
+    "p1", 
     2, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -73,6 +76,7 @@ character = SetCharacter(
     "necro",
     "male_1",
     "nm01", 
+    "p1", 
     "p1", 
     2, //INITIAL SPRITE
     0, //HP
@@ -96,6 +100,7 @@ character = SetCharacter(
     "female",
     "af0l", 
     "p1", 
+    "p1", 
     2, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -117,6 +122,7 @@ character = SetCharacter(
     "healer",
     "female_2",
     "hf01", 
+    "p1", 
     "p1", 
     2, //INITIAL SPRITE
     0, //HP
@@ -147,6 +153,7 @@ character = SetCharacter(
     "male",
     "km01", 
     cp_id, 
+    cp_id, 
     4, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -168,6 +175,7 @@ character = SetCharacter(
     "mage",
     "female",
     "mf01", 
+    cp_id, 
     cp_id, 
     4, //INITIAL SPRITE
     0, //HP
@@ -191,6 +199,7 @@ character = SetCharacter(
     "female",
     "wf01", 
     cp_id, 
+    cp_id, 
     4, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -212,6 +221,7 @@ character = SetCharacter(
     "necro",
     "male_2",
     "nm02", 
+    cp_id, 
     cp_id, 
     4, //INITIAL SPRITE
     0, //HP
@@ -235,6 +245,7 @@ character = SetCharacter(
     "male_2",
     "am01", 
     cp_id, 
+    cp_id, 
     4, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -257,6 +268,7 @@ character = SetCharacter(
     "female_1",
     "hf02", 
     cp_id, 
+    cp_id, 
     4, //INITIAL SPRITE
     0, //HP
     0, //SP
@@ -274,27 +286,27 @@ character = SetCharacter(
 );
 CharacterPosition(9,12,character);
 
-// character = SetCharacter(
-//     "wooden_target",
-//     "male",
-//     "wt", 
-//     "p2", 
-//     4, //INITIAL SPRITE
-//     -200, //HP
-//     0, //SP
-//     0, //ATK
-//     0, //DEF
-//     0, //MATK
-//     0, //MDEF
-//     0, //DEX
-//     0, //AGI
-//     0, //STEP
-//     0, //RANGE
-//     0, //MRANGE
-//     0, //ARANGE
-//     0 //ARROW
-// );
-// CharacterPosition(8,8,character);
+character = SetCharacter(
+    "wooden_target",
+    "male",
+    "wt", 
+    "p2", 
+    4, //INITIAL SPRITE
+    -200, //HP
+    0, //SP
+    0, //ATK
+    0, //DEF
+    0, //MATK
+    0, //MDEF
+    0, //DEX
+    0, //AGI
+    0, //STEP
+    0, //RANGE
+    0, //MRANGE
+    0, //ARANGE
+    0 //ARROW
+);
+CharacterPosition(8,8,character);
     
 turn.sort(function (a, b) {
     if (a.agi > b.agi) {
@@ -309,7 +321,7 @@ SetTurnBatch();
 PointTurn();
 
 //Para inicializar informações e atributos do personagem
-function SetCharacter(pclass, sex, id, player_id, sprite, hp, sp, atk, def, matk, mdef, dex, agi, step, range, mrange, arange, arrow){
+function SetCharacter(pclass, sex, id, player_id, control_player_id, sprite, hp, sp, atk, def, matk, mdef, dex, agi, step, range, mrange, arange, arrow){
     var character = new Array();
 
     switch (pclass){
@@ -512,6 +524,7 @@ function SetCharacter(pclass, sex, id, player_id, sprite, hp, sp, atk, def, matk
 
     character['id'] = id;	
     character['p_id'] = player_id; //Player dono do personagem  
+    character['cp_id'] = control_player_id; //Player no controle do personagem  
     character['pclass'] = pclass; 
     character['sex'] = sex; 
     character['sprite'] = src_path+"character/"+character.pclass+"_"+character.sex+"_"+sprite+".png"; 
